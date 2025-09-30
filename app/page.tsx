@@ -7,7 +7,6 @@ export default function Home() {
 
   return (
     <>
-
       {/* hero section */}
       <section className="hero heroGradient" aria-label="Hero">
         <div className="heroVideoWrap" aria-hidden>
@@ -24,22 +23,72 @@ export default function Home() {
       </section>
 
       <main>
-        <section id="about" style={{maxWidth: 1100, margin: '40px auto', padding: '0 20px'}}>
-          <h2>コンセプト</h2>
-          <p>料理と人がつながる、ちいさな台所のある場所。上足洗レンタルスペースは、地域に開かれた「つくる」「あつまる」「たのしむ」空間です。</p>
+        <section id="concept" style={{maxWidth: 1100, margin: '40px auto', padding: '0 20px'}}>
+          <h2 className="section-title">コンセプト</h2>
+          <p>料理と人がつながる、ちいさな台所のある場所。<br/>上足洗レンタルスペースは、地域に開かれた「つくる」「あつまる」「たのしむ」空間です。</p>
         </section>
 
-        <section id="rental" style={{maxWidth: 1100, margin: '40px auto', padding: '0 20px'}}>
-          <h2>サービス</h2>
-          <p>Rental details, price, and usage examples.</p>
-        </section>
-
-        <section id="rental" style={{maxWidth: 1100, margin: '40px auto', padding: '0 20px'}}>
-          <h2>News</h2>
-          <div className="igWrap">
-            <h3>Instagram</h3>
-            <p><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Open Instagram</a></p>
+        <section id="service" style={{maxWidth: 1100, margin: '40px auto', padding: '0 20px'}}>
+          <h2 className="section-title">サービス</h2>
+          <div className="service-grid">
+            <div className="rental">
+              <img src="/assets/media/studio2.jpg" alt="レンタルスペース" />
+              <p>レンタルスペース<br/><small>ちいさなキッチンから、あなたのアイデアをかたちに。</small></p>
+              <a href="#">予約</a>
+            </div>
+            <div className="deli">
+              <img src="/assets/media/deli3−2.jpg" alt="デリ" />
+              <p>デリ<br/><small>手づくりのやさしさを、今日の食卓に。</small></p>
+              <a href="#">予約</a>
+            </div>
+            <div className="lesson">
+              <img src="/assets/media/lessson_4577.JPG" alt="レッスン" />
+              <p>レッスン<br/><small>気軽に学べる料理レッスン。</small></p>
+              <a href="#">予約</a>
+            </div>
           </div>
+        </section>
+
+        <section id="news" style={{ maxWidth: 1100, margin: '40px auto', padding: '0 20px' }}>
+          <h2 className="section-title">
+            News
+          </h2>
+
+          <div className="igGrid">
+            <div className="igCard">
+              <h3>今月のお知らせ</h3>
+              <div className="igMeta">
+                <img src="https://i.pravatar.cc/100?img=1" alt="avatar" />
+                <div>
+                  <div className="name">Name</div>
+                  <div className="desc">Description</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="igCard">
+              <h3>レッスンレポート</h3>
+              <div className="igMeta">
+                <img src="https://i.pravatar.cc/100?img=2" alt="avatar" />
+                <div>
+                  <div className="name">Name</div>
+                  <div className="desc">Description</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="igCard">
+              <h3>レッスンレポート</h3>
+              <div className="igMeta">
+                <img src="https://i.pravatar.cc/100?img=3" alt="avatar" />
+                <div>
+                  <div className="name">Name</div>
+                  <div className="desc">Description</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </section>
 
         {/* Instagram embed: paste a widget code here if needed */}

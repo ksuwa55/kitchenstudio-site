@@ -24,7 +24,6 @@ export default function Header() {
       <nav className="navbar" aria-label="Primary">
         <ul className="navlist">
           <li><Link className={isActive('/') ? 'active' : ''} href="/">Home</Link></li>
-          <li><Link className={isActive('/about') ? 'active' : ''} href="/about">会社概要</Link></li>
           <li><Link className={isActive('/rental') ? 'active' : ''} href="/rental">レンタルスペース</Link></li>
           <li><Link className={isActive('/deli') ? 'active' : ''} href="/deli">デリ</Link></li>
           <li><Link className={isActive('/access') ? 'active' : ''} href="/access">アクセス</Link></li>
@@ -36,7 +35,6 @@ export default function Header() {
       <div className={`overlay ${open ? 'open' : ''}`} role="dialog" aria-modal="true" aria-label="Menu" onClick={() => setOpen(false)}>
         <ul>
           <li><Link href="/">Home</Link></li>
-          <li><Link href="/about">About</Link></li>
           <li><Link href="/rental">Rental Space</Link></li>
           <li><Link href="/deli">Deli</Link></li>
           <li><Link href="/access">Access</Link></li>

@@ -17,7 +17,7 @@ export default function Home() {
 
         <div className="heroInner">
           <div className="siteTitle">
-            <a href="/"><h1>Kitchen Studio</h1></a>
+            <a href="/"><h1>雅菜</h1></a>
           </div> 
         </div>
       </section>

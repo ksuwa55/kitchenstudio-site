@@ -38,6 +38,19 @@ html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, "Sego
 }
 .overlay a { color:#fff; font-size: 1.4rem; font-weight: 700; text-decoration: none; }
 
+/* Footer */
+.footer{
+  border-top: 1px solid #060606;
+}
+.footer .navlist a { color: #060606; text-decoration: none; font-weight: 300; white-space: nowrap; }
+.footer ul { 
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
+}
+
 /* Hero with video background */
 .hero { position: relative; min-height: var(--hero-min-h); color: var(--text-on-hero); }
 .heroGradient::before{
@@ -52,8 +65,12 @@ html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, "Sego
 
 
 
-
+/* Homepage */
 /* Service */
+#service a{
+  color: #000;
+  font-weight: bold;
+}
 .section-title { 
     font-size: 25px;
     font-weight: bold;
@@ -71,7 +88,6 @@ html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, "Sego
 .rental {
   grid-row: 1 / 3;
   grid-column: 1;
-  border: 2px solid #00f;
   padding: 10px;
 }
 
@@ -129,18 +145,29 @@ html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, "Sego
   font-size: 14px;
 }
 
-
-/* Footer */
-.footer{
-  border-top: 1px solid #060606;
+/* Pages other than home */
+.pageHero {
+  --hero-min-h: 32vh;
 }
-.footer .navlist a { color: #060606; text-decoration: none; font-weight: 300; white-space: nowrap; }
-.footer ul { 
-  display: flex;
-  justify-content: right;
-  align-items: right;
-  margin-right: 2rem;
-  margin-bottom: 1rem;
+
+.pageHero .heroImageWrap {
+  height: clamp(200px, 35vh, 360px);
+  overflow: hidden;
+}
+
+.pageHero .heroImageWrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.pageHero .heroInner {
+  position: relative;
+  z-index: 2;
+  padding: 16px 5px;
+  text-align: center;
+  color: var(--text-on-hero);
 }
 
 /* Responsive */

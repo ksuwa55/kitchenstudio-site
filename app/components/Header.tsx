@@ -26,8 +26,9 @@ export default function Header() {
           <li><Link className={isActive('/') ? 'active' : ''} href="/">Home</Link></li>
           <li><Link className={isActive('/rental') ? 'active' : ''} href="/rental">レンタルスペース</Link></li>
           <li><Link className={isActive('/deli') ? 'active' : ''} href="/deli">デリ</Link></li>
+          <li><Link className={isActive('/lesson') ? 'active' : ''} href="/lesson">レッスン</Link></li>
           <li><Link className={isActive('/access') ? 'active' : ''} href="/access">アクセス</Link></li>
-          <li><a href={STORES_BOOK_URL} target="_blank" rel="noopener noreferrer">問い合わせ</a></li>
+          <li><Link className={isActive('/contact') ? 'active' : ''} href="/contact">問い合わせ</Link></li>
         </ul>
       </nav>
 

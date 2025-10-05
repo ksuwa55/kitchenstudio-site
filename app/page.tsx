@@ -42,7 +42,7 @@ export default function Home() {
               <a href="#">予約</a>
             </div>
             <div className="lesson">
-              <img src="/assets/media/lessson_4577.JPG" alt="レッスン" />
+              <img src="/assets/media/lesson_4577.JPG" alt="レッスン" />
               <p>レッスン<br/><small>気軽に学べる料理レッスン。</small></p>
               <a href="#">予約</a>
             </div>

@@ -1,0 +1,198 @@
+.deliPage .section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.deliPage .pageTitle {
+  font-size: 36px;
+  font-weight: 800;
+  display: inline-block;
+  border-bottom: 3px solid #111;
+  margin: 8px 0 20px;
+  letter-spacing: 0.02em;
+}
+
+.deliPage .lead {
+  margin-top: 12px;
+  color: #555;
+  line-height: 1.9;
+}
+
+.deliPage .secTitle {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 6px 0 16px;
+  border-bottom: 2px solid #111;
+  display: inline-block;
+}
+
+/* メニューカード */
+.deliPage .menuGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.deliPage .menuCard {
+  border: 1px solid #e9e9e9;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.deliPage .thumb {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f6f6f6;
+}
+
+.deliPage .thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.deliPage .body {
+  padding: 14px 14px 16px;
+  display: grid;
+  gap: 6px;
+}
+
+.deliPage .title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.deliPage .desc {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.deliPage .price {
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+/* 価格テーブル */
+.deliPage .priceList {
+  margin-top: 18px;
+}
+
+.deliPage .priceTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.deliPage .priceTable th,
+.deliPage .priceTable td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #efefef;
+  text-align: left;
+}
+
+.deliPage .priceTable thead th {
+  background: #fafafa;
+}
+
+/* CTA */
+.deliPage .ctaCard {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: center;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+}
+
+.deliPage .ctaText p {
+  color: #555;
+  margin: 6px 0 0;
+}
+
+.deliPage .ctaBtns {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.deliPage .btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #111;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid #111;
+}
+
+.deliPage .btnPrimary:hover {
+  opacity: 0.9;
+}
+
+.deliPage .btnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 10px;
+  background: #f5f5f5;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid #e4e4e4;
+}
+
+/* ポリシー */
+.deliPage .policyCard {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  padding: 16px 18px;
+}
+
+.deliPage .smallNote {
+  color: #777;
+  font-size: 13px;
+}
+
+/* レスポンシブ */
+@media (max-width: 1024px) {
+  .deliPage .menuGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .deliPage .menuGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .deliPage .ctaCard {
+    grid-template-columns: 1fr;
+  }
+  .deliPage .ctaBtns {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .deliPage .menuGrid {
+    grid-template-columns: 1fr;
+  }
+  .deliPage .pageTitle {
+    font-size: 30px;
+  }
+}

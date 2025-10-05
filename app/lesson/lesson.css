@@ -1,0 +1,177 @@
+/* セクション共通 */
+.lessonPage .section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.lessonPage .pageTitle {
+  font-size: 36px;
+  font-weight: 800;
+  display: inline-block;
+  border-bottom: 3px solid #111;
+  margin: 8px 0 20px;
+  letter-spacing: 0.02em;
+}
+
+.lessonPage .lead {
+  margin-top: 12px;
+  color: #555;
+  line-height: 1.9;
+}
+
+.lessonPage .secTitle {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 6px 0 16px;
+  border-bottom: 2px solid #111;
+  display: inline-block;
+}
+
+/* 講師 */
+.lessonPage .instructorsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.lessonPage .teacherCard {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  border: 1px solid #e9e9e9;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 16px;
+}
+
+.lessonPage .portrait {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f6f6f6;
+}
+
+.lessonPage .portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lessonPage .teacherBody { display: grid; gap: 6px; }
+.lessonPage .teacherName { margin: 0; font-size: 20px; font-weight: 800; }
+.lessonPage .teacherRole { margin: 0; color: #666; }
+.lessonPage .teacherBio { margin: 4px 0 0; color: #444; }
+
+.lessonPage .teacherTags {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.lessonPage .teacherTags li {
+  font-size: 12px;
+  color: #333;
+  background: #f1f1f1;
+  border: 1px solid #e4e4e4;
+  border-radius: 999px;
+  padding: 4px 8px;
+}
+
+/* 開催予定（一覧） */
+.lessonPage .lessonList { display: grid; gap: 14px; }
+
+.lessonPage .lessonCard {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+  border: 1px solid #e9e9e9;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 12px;
+}
+
+.lessonPage .lessonThumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #f6f6f6;
+}
+
+.lessonPage .lessonThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.lessonPage .lessonMain { display: grid; gap: 6px; align-content: start; }
+.lessonPage .lessonTitle { margin: 0; font-size: 18px; font-weight: 800; }
+.lessonPage .lessonMeta { color: #666; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.lessonPage .dot { opacity: .6; }
+.lessonPage .lessonDesc { margin: 2px 0 0; color: #444; }
+
+.lessonPage .lessonFoot {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lessonPage .lessonPrice { font-weight: 800; }
+
+/* CTA 共通 */
+.lessonPage .ctaCard {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  align-items: center;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 20px;
+}
+
+.lessonPage .ctaText p { color: #555; margin: 6px 0 0; }
+.lessonPage .ctaBtns { display: flex; gap: 12px; justify-content: flex-end; }
+
+.lessonPage .btnPrimary {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 18px; border-radius: 10px;
+  background: #111; color: #fff; text-decoration: none; font-weight: 700;
+  border: 1px solid #111;
+}
+
+.lessonPage .btnPrimary:hover { opacity: .9; }
+
+.lessonPage .btnGhost {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 18px; border-radius: 10px;
+  background: #f5f5f5; color: #111; text-decoration: none; font-weight: 700;
+  border: 1px solid #e4e4e4;
+}
+
+/* レスポンシブ */
+@media (max-width: 980px) {
+  .lessonPage .instructorsGrid { grid-template-columns: 1fr; }
+  .lessonPage .teacherCard { grid-template-columns: 140px 1fr; }
+  .lessonPage .lessonCard { grid-template-columns: 180px 1fr; }
+  .lessonPage .ctaCard { grid-template-columns: 1fr; }
+  .lessonPage .ctaBtns { justify-content: flex-start; }
+}
+
+@media (max-width: 640px) {
+  .lessonPage .teacherCard { grid-template-columns: 1fr; }
+  .lessonPage .lessonCard { grid-template-columns: 1fr; }
+  .lessonPage .pageTitle { font-size: 30px; }
+}

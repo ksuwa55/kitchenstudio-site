@@ -16,10 +16,11 @@ export default function DeliPage() {
 
       <main className="deliPage">
         <section id="concept" className="section">
-          <h1 className="pageTitle">デリ予約</h1>
+          <h1 className="pageTitle">プラントベースデリ(要予約)</h1>
           <p className="lead">
-            素材の個性をいかし、毎日食べたくなるバランスを大切に。
-            保存料に頼らず、丁寧な下ごしらえと火入れで、からだにやさしいデリをお届けします。
+            野菜ソムリエプロ、J-Veganist、発酵料理士インストラクター、発酵ごはんとお菓子のmadoi認定講師のオーナーが野菜と豆のおかずを発酵調味料を使って調理したお弁当を販売します。<br/>
+            完全ヴィーガン（動物性のものをいっさい含まない）またはゆるヴィーガン（卵や調味料の一部に動物性のものを使用）<br/>
+            ほぼ週替わりで提供します。通常おかずの種類は５〜７品です。
           </p>
         </section>
 

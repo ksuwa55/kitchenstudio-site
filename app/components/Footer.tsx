@@ -20,7 +20,6 @@ export default function Header() {
         {/* desktop nav */}
         <nav className="navbar" aria-label="Primary">
             <ul className="navlist">
-                <li><Link className={isActive('/') ? 'active' : ''} href="/about">会社概要</Link></li>
                 <li><Link className={isActive('/access') ? 'active' : ''} href="/access">アクセス</Link></li>
                 <li><a href={STORES_BOOK_URL} target="_blank" rel="noopener noreferrer">問い合わせ</a></li>
             </ul>

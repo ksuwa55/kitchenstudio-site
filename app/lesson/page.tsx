@@ -20,11 +20,10 @@ export default function LessonPage() {
       <main className="lessonPage">
         {/* コンセプト */}
         <section id="concept" className="section">
-          <h1 className="pageTitle">レッスン</h1>
+          <h1 className="pageTitle">ヴィーガンフードレッスン(毎月第日曜日＋不定)</h1>
           <p className="lead">
-            毎日の台所が、少しだけ楽しく、少しだけラクになる。
-            基本の火入れやだしの取り方から、季節の料理、保存食まで。
-            少人数で質問しやすい雰囲気を大切に、実践重視で学べます。
+            野菜ソムリエプロ、J-Veganist、発酵料理士インストラクター、発酵ごはんとお菓子のmadoi認定講師のオーナーが、旬の野菜をテーマに発酵調味料を活かしたお料理のレッスンをします。<br/>
+            参加者全員でヘルシーランチを作り、その場で召し上がっていただきます。グループのリクエストにお応えするプライベートレッスンも承ります。
           </p>
         </section>
 

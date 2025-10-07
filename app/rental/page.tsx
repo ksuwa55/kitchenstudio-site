@@ -24,7 +24,7 @@ export default function Rental() {
       <main className="rentalPage">
         {/* Hero / ギャラリー（メインはYouTube埋め込み） */}
         <section id="rental-hero" className="section">
-          <h1 className="pageTitle">レンタルスペース</h1>
+          <h1 className="pageTitle">食と集いのレンタルスペース</h1>
 
             <div className="galleryMain">
               <iframe
@@ -38,7 +38,10 @@ export default function Rental() {
             </div>
 
           <p className="lead">
-            ちいさなキッチンから、あなたのアイデアをかたちに。撮影・ポップアップ・料理会・ワークショップなど、幅広くご利用いただけます。
+            キッチン設備のついた光あふれるスペース<br/>
+            料理教室やグループでの料理会、料理動画の撮影に適しています。
+            もちろんキッチンを使用しないスペースとしての使用もOKです。<br/>
+            サークルのお茶会などにもどうぞ。
           </p>
         </section>
 

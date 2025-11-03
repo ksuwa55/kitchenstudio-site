@@ -6,9 +6,8 @@ export default function Rental() {
   const BOOKING_URL = "https://stores.jp/your-store/reserve";
   const youtubeId = "dQw4w9WgXcQ"; // 実IDに変更
   const heroImages = [
-    "/images/rental/hero1.jpg",
-    "/images/rental/hero2.jpg",
-    "/images/rental/hero3.jpg",
+    "/assets/media/studio2.jpg",
+    "/assets/media/studio3.jpg",
   ];
 
   return (
@@ -22,27 +21,38 @@ export default function Rental() {
 
       {/* このページ専用のスコープ用ラッパー */}
       <main className="rentalPage">
-        {/* Hero / ギャラリー（メインはYouTube埋め込み） */}
+        {/* Hero / ギャラリー（画像と広さ） */}
         <section id="rental-hero" className="section">
           <h1 className="pageTitle">食と集いのレンタルスペース</h1>
 
-            <div className="galleryMain">
-              <iframe
-                className="ytFrame"
-                src={`https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0&modestbranding=1&playsinline=1`}
-                title="レンタルスペース紹介動画"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-
           <p className="lead">
-            キッチン設備のついた光あふれるスペース<br/>
-            料理教室やグループでの料理会、料理動画の撮影に適しています。
-            もちろんキッチンを使用しないスペースとしての使用もOKです。<br/>
+            キッチン設備のついた光あふれるスペース。<br />
+            料理教室やグループでの料理会、料理動画の撮影に適しています。<br />
+            もちろんキッチンを使用しないスペースとしての使用もOKです。<br />
             サークルのお茶会などにもどうぞ。
           </p>
+
+          {/* 写真ギャラリー（キッチン／フリースペース） */}
+          <div className="heroGallery">
+            {/* 例：heroImages を使用（/images/rental/hero1.jpg 等） */}
+            {heroImages.slice(0, 2).map((src, i) => (
+              <figure key={src} className="heroPhoto">
+                <img src={src} alt={i === 0 ? "キッチンエリアの写真" : "フリースペースの写真"} />
+                <figcaption>{i === 0 ? "キッチン" : "フリースペース"}</figcaption>
+              </figure>
+            ))}
+          </div>
+
+          {/* 広さ表示 */}
+          <div className="areaBox">
+            <div className="areaItem">
+              <span className="areaLabel">広さ</span>
+              <ul>
+                <li>フリースペース：約14帖</li>
+                <li>キッチン：約6.8帖</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
         {/* 設備一覧 */}
@@ -104,6 +114,67 @@ export default function Rental() {
             </div>
           </div>
         </section>
+
+        {/* 入館方法 & 利用規約 */}
+        <section id="instructions" className="section">
+          <h2 className="secTitle">入館方法と利用規約</h2>
+
+          <div className="entryVideo">
+            <h3>入館方法</h3>
+            <p>ご利用前にこちらの動画をご確認ください。</p>
+            <div className="videoWrap">
+              <iframe
+                className="ytFrame"
+                src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1&playsinline=1"
+                title="入館方法"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          <div className="agreementBlock">
+            <h3>利用規約</h3>
+            <p>
+              ご予約前に必ず
+              <a href="/terms" target="_blank" rel="noopener noreferrer">
+                利用規約
+              </a>
+              をご確認ください。
+            </p>
+            <label className="agreeCheck">
+              <input type="checkbox" id="agreeTerms" /> 利用規約に同意する
+            </label>
+            <div className="agreeBtnWrap">
+              <a
+                id="reserveBtn"
+                className="btnPrimary disabled"
+                href="https://stores.jp/your-store/reserve"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                予約に進む
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <script>
+          {`
+            document.addEventListener('DOMContentLoaded', () => {
+              const checkbox = document.getElementById('agreeTerms');
+              const button = document.getElementById('reserveBtn');
+              checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                  button.classList.remove('disabled');
+                } else {
+                  button.classList.add('disabled');
+                }
+              });
+            });
+          `}
+        </script>
 
         {/* 予約導線 */}
         <section id="booking" className="section">

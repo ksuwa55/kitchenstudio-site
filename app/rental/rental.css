@@ -26,23 +26,78 @@
   margin: 6px 0 18px;
 }
 
-/* フル幅動画（16:9） */
-.rentalPage .galleryMain {
-  aspect-ratio: 16 / 9;
-  width: 100%;
+/* ==============================
+   ヒーロー画像ギャラリー（動画の代わり）
+============================== */
+.rentalPage .heroGallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+  justify-items: center;
 }
 
-.rentalPage .ytFrame {
+.rentalPage .heroPhoto {
   width: 100%;
-  height: 100%;
-  border: 0;
+  max-width: 420px; /* PC時の最大幅 */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f8f8;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.rentalPage .heroPhoto img {
   display: block;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  background: #000;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
 }
 
-/* 設備一覧（カード） */
+.rentalPage .heroPhoto figcaption {
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+  padding: 6px 0;
+  background: #fff;
+  border-top: 1px solid #eee;
+}
+
+/* 広さボックス */
+.rentalPage .areaBox {
+  margin-top: 18px;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 16px;
+  max-width: 480px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+.rentalPage .areaItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.rentalPage .areaLabel {
+  display: inline-block;
+  font-weight: 700;
+  border-left: 4px solid #111;
+  padding-left: 8px;
+  min-width: 44px;
+}
+
+.rentalPage .areaItem ul {
+  margin: 0;
+  padding-left: 18px;
+  color: #444;
+  line-height: 1.8;
+}
+
+/* ==============================
+   設備一覧（カード）
+============================== */
 .rentalPage .amenitiesGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -85,7 +140,9 @@
   padding-left: 8px;
 }
 
-/* 料金カード */
+/* ==============================
+   料金カード
+============================== */
 .rentalPage .priceCards {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -128,7 +185,59 @@
   color: #444;
 }
 
-/* 予約CTA */
+/* ==============================
+   入館方法と規約（動画サイズ修正込み）
+============================== */
+.rentalPage .entryVideo {
+  margin-bottom: 32px;
+}
+.rentalPage .entryVideo h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+/* ここを絶対配置でフィットさせる */
+.rentalPage .videoWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* 16:9 維持 */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  background: #000;
+}
+/* aspect-ratio 非対応ブラウザ向けフォールバック */
+@supports not (aspect-ratio: 1 / 1) {
+  .rentalPage .videoWrap {
+    height: 0;
+    padding-top: 56.25%;     /* 16:9 */
+  }
+}
+
+.rentalPage .videoWrap iframe,
+.rentalPage .videoWrap .ytFrame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.rentalPage .agreementBlock {
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fcfcfc;
+}
+.rentalPage .agreementBlock h3 { margin-bottom: 8px; }
+.rentalPage .agreeCheck { display: block; margin-top: 10px; font-weight: 600; }
+.rentalPage .agreeBtnWrap { margin-top: 20px; }
+.rentalPage .btnPrimary.disabled { opacity: 0.5; pointer-events: none; }
+
+/* ==============================
+   予約CTA
+============================== */
 .rentalPage .ctaCard {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -155,7 +264,9 @@
   border: 1px solid #e4e4e4;
 }
 
-/* ポリシー/注意事項 */
+/* ==============================
+   ポリシー/注意事項
+============================== */
 .rentalPage .policyCard {
   border: 1px solid #e6e6e6;
   border-radius: 12px;
@@ -177,18 +288,26 @@
 }
 .rentalPage .noteCard h3 { margin: 4px 0 8px; font-size: 18px; }
 
-/* レスポンシブ */
+/* ==============================
+   レスポンシブ調整
+============================== */
 @media (max-width: 980px) {
-  .rentalPage .galleryMain { aspect-ratio: 16 / 9; }
   .rentalPage .ctaCard { grid-template-columns: 1fr; }
   .rentalPage .ctaBtns { justify-content: flex-start; }
 }
+
 @media (max-width: 840px) {
   .rentalPage .amenitiesGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .rentalPage .priceCards { grid-template-columns: 1fr; }
   .rentalPage .noticeRow { grid-template-columns: 1fr; }
   .rentalPage .notesGrid { grid-template-columns: 1fr; }
 }
+
+@media (max-width: 640px) {
+  .rentalPage .heroGallery { grid-template-columns: 1fr; }
+  .rentalPage .heroPhoto img { aspect-ratio: 3 / 2; }
+}
+
 @media (max-width: 560px) {
   .rentalPage .amenitiesGrid { grid-template-columns: 1fr; }
   .rentalPage .pageTitle { font-size: 30px; }

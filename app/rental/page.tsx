@@ -47,20 +47,26 @@ export default function Rental() {
 
         {/* 設備一覧 */}
         <section id="amenities" className="section">
-          <h2 className="secTitle">設備</h2>
-          <div className="amenitiesGrid">
-            {amenities.map((a) => (
-              <div key={a.label} className="amenityCard">
-                <div className="iconWrap" aria-hidden>
-                  {a.icon}
-                </div>
-                <div>
-                  <div className="amenityLabel">{a.label}</div>
-                  {a.note && <div className="amenityNote">{a.note}</div>}
-                </div>
+          <h2 className="secTitle">設備・備品</h2>
+
+          {amenities.map((group) => (
+            <div key={group.category} className="amenityGroup">
+              <h3 className="amenityCategory">{group.category}</h3>
+              <div className="amenitiesGrid">
+                {group.items.map((a) => (
+                  <div key={a.label} className="amenityCard">
+                    <div className="iconWrap" aria-hidden>
+                      {a.icon}
+                    </div>
+                    <div>
+                      <div className="amenityLabel">{a.label}</div>
+                      {a.note && <div className="amenityNote">{a.note}</div>}
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </section>
 
         {/* 料金表 */}
@@ -163,30 +169,74 @@ export default function Rental() {
 }
 
 const amenities = [
-  { label: "IHコンロ（2口）", note: "最大1.5kW", icon: "🍳" },
-  { label: "オーブン/電子レンジ", note: "20L", icon: "🧁" },
-  { label: "冷蔵庫・冷凍庫", note: "120L", icon: "🧊" },
-  { label: "流し/給湯", note: "お湯あり", icon: "🚰" },
-  { label: "食器/カトラリー", note: "〜8名分", icon: "🍽️" },
-  { label: "Wi-Fi/電源", note: "上り/下り 良好", icon: "📶" },
-  { label: "撮影用ライト", note: "小型×2", icon: "💡" },
-  { label: "テーブル/椅子", note: "折畳み可", icon: "🪑" },
-  { label: "消耗品", note: "キッチンペーパー等", icon: "🧻" },
+  {
+    category: "共通",
+    items: [
+      { label: "Wi-Fi", note: "高速・安定", icon: "📶" },
+      { label: "手洗い・トイレ", note: "温水洗浄便座", icon: "🚻" },
+      { label: "清掃用具", note: "掃除機・モップ等", icon: "🧹" },
+      { label: "テーブル", note: "折畳み可", icon: "🪑" },
+      { label: "いす", note: "最大8脚", icon: "🪑" },
+    ],
+  },
+  {
+    category: "キッチン",
+    items: [
+      { label: "ガスコンロ（3口）", note: "高火力タイプ", icon: "🔥" },
+      { label: "流し台", icon: "🚰" },
+      { label: "調理台", icon: "🍽️" },
+      { label: "電子レンジ", icon: "🧁" },
+      { label: "炊飯器", note: "3合炊き", icon: "🍚" },
+      { label: "冷凍冷蔵庫", note: "120L", icon: "🧊" },
+      {
+        label: "調理用具",
+        note: "鍋・フライパン・ざる・ボウル・包丁・まな板・おたま・トング等",
+        icon: "🍲",
+      },
+      {
+        label: "食器・カトラリー類",
+        note: "平皿・小鉢・ガラスコップ・茶碗・どんぶり・湯呑み・スプーン・フォーク・箸など",
+        icon: "🍴",
+      },
+    ],
+  },
 ];
+
 
 const pricing = [
   {
-    title: "基本プラン（調理器具あり）",
-    caption: "料理会・撮影など",
-    price: "¥3,500",
+    title: "基本プラン（キッチン設備、調理器具あり）",
+    caption: "料理会、料理教室、料理動画等撮影、配信等",
+    price: "¥1,300",
     minHours: 2,
-    includes: ["IH・調理器具・食器の利用可", "Wi-Fi/電源", "片付け用洗剤・消耗品"],
+    includes: [
+      "キッチン設備・調理器具・食器の利用可",
+      "Wi-Fi/電源",
+      "片付け用洗剤・消耗品",
+      "※時間は準備から撤収までを含みます",
+    ],
   },
   {
-    title: "ライトプラン（器具なし）",
-    caption: "ワークショップ・打合せ",
-    price: "¥2,500",
+    title: "ライトプラン（キッチン部分の使用不可）",
+    caption: "料理以外のワークショップ、動画等の撮影、配信等",
+    price: "¥900",
     minHours: 2,
-    includes: ["テーブル/椅子のみ", "Wi-Fi/電源", "簡易清掃のみ"],
+    includes: [
+      "テーブル/椅子のみ利用可",
+      "Wi-Fi/電源",
+      "簡易清掃のみ",
+      "※時間は準備から撤収までを含みます",
+    ],
+  },
+  {
+    title: "営業プラン",
+    caption:
+      "期間限定レストラン・カフェ、フードフェスの商品作り等にご利用いただけます。",
+    price: "ご相談",
+    minHours: 0,
+    includes: [
+      "ご希望内容に応じて個別お見積り",
+      "お問い合わせフォームからご相談ください",
+    ],
   },
 ];

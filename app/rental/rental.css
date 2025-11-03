@@ -73,6 +73,18 @@
 .rentalPage .amenityLabel { font-weight: 700; }
 .rentalPage .amenityNote { color: #777; font-size: 13px; }
 
+.rentalPage .amenityGroup {
+  margin-bottom: 28px;
+}
+
+.rentalPage .amenityCategory {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  border-left: 4px solid #111;
+  padding-left: 8px;
+}
+
 /* 料金カード */
 .rentalPage .priceCards {
   display: grid;

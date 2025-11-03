@@ -119,18 +119,11 @@ export default function LessonPage() {
 /* ---- ダミーデータ ---- */
 const INSTRUCTORS = [
   {
-    name: "Yukari Tanaka",
-    role: "料理家・フードスタイリスト",
+    name: "Masami Takechi",
+    role: "野菜ソムリエプロ・J-Veganist・発酵料理士インストラクター・発酵ごはんとお菓子のmadoi認定講師・SBS学苑講師",
     photo: "/assets/media/teacher-yukari.jpg",
     bio: "季節の食材と家庭の台所にフィットするレシピを提案。和のだしから発酵まで、日常に活きる技を大切にしています。",
     tags: ["基本の和食", "発酵", "保存食"],
-  },
-  {
-    name: "Kenji Sato",
-    role: "シェフ・レシピ開発",
-    photo: "/assets/media/teacher-kenji.jpg",
-    bio: "フレンチをベースに、家庭でも再現できるテクニックに落とし込むのが得意。火入れと段取りで味が変わるを体験できます。",
-    tags: ["フレンチ基礎", "段取り術", "火入れ"],
   },
 ];
 

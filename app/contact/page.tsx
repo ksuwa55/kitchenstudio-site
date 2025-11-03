@@ -198,8 +198,7 @@ export default function ContactPage() {
         </div>
 
         <p className="formNote">
-          ※ 送信後の自動通知は管理者宛（メール等）に送られます。通知設定は
-          <code>/api/contact</code> 側で行ってください。
+          ※ ドメインgmail.comからのメールを受信できるように設定をお願いいたします。
         </p>
       </section>
     </main>

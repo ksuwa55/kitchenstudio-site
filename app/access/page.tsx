@@ -6,8 +6,6 @@ export default function AccessPage() {
   // 住所や表示名は好きに差し替えOK
   const PLACE_NAME = "Kitchen Studio";
   const ADDRESS = "〒420-0841 静岡県静岡市葵区上足洗2-11-47";
-  const WALK_ACCESS = "東海道線「静岡駅」東口より徒歩20分";
-  const BUS_ACCESS = "静鉄バス 上足洗下車 徒歩1分";
   const PARKING = "近隣コインパーキングをご利用ください（提携なし）";
   const MAP_Q = encodeURIComponent(`${PLACE_NAME} ${ADDRESS}`);
 
@@ -55,19 +53,22 @@ export default function AccessPage() {
               <span className="emoji" aria-hidden>📍</span>
               {ADDRESS}
             </p>
-            <p className="note">エレベーターで2Fへお上がりください。</p>
           </article>
 
           <article className="infoCard">
             <h2 className="secTitle">アクセス</h2>
             <ul className="list">
               <li>
-                <span className="emoji" aria-hidden>🚶‍♀️</span>
-                {WALK_ACCESS}
+                東海道線「静岡駅」東口より徒歩20分
               </li>
               <li>
-                <span className="emoji" aria-hidden>🚌</span>
-                {BUS_ACCESS}
+                静岡鉄道「新静岡駅」から徒歩20分
+              </li>
+              <li>
+                静鉄バス 上足洗下車 徒歩1分
+              </li>
+              <li>
+                静鉄バス 上足洗下車 徒歩1分
               </li>
             </ul>
           </article>
@@ -76,10 +77,11 @@ export default function AccessPage() {
             <h2 className="secTitle">駐車場</h2>
             <p>
               <span className="emoji" aria-hidden>🚗</span>
-              {PARKING}
+              3台無料<br />
+              近隣の店舗等の駐車場には決して駐車しないでください<br />
             </p>
             <p className="note">
-              自転車は建物前に一時駐輪可（通行の妨げにならないようご配慮ください）。
+              自転車は建物玄関側に駐輪可能（通行の妨げにならないようにご配慮ください）。
             </p>
           </article>
         </div>

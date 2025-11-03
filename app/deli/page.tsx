@@ -85,8 +85,9 @@ export default function DeliPage() {
           <h2 className="secTitle">キャンセルポリシー</h2>
           <div className="policyCard">
             <ul>
-              <li>受け取り前日まで：無料</li>
-              <li>当日キャンセル：商品代金の 100%</li>
+              <li>受け取り２日前正午まで：無料</li>
+              <li>予約＝決済となりますが３日前までにキャンセルのご連絡を受けた場合返金いたします。決済方法により返金手数料をご負担いただく場合がございます。</li>
+              <li>２日前正午〜当日：商品代金の 100%</li>
             </ul>
             <p className="smallNote">仕込み開始後の内容変更はお受けできない場合があります。</p>
           </div>

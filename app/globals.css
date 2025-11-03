@@ -80,7 +80,7 @@ html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, "Sego
 
 .service-grid {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;   
+  grid-template-columns: 1.2fr 1fr;   
   grid-template-rows: none;           
   grid-auto-rows: 340px;
   gap: 20px;

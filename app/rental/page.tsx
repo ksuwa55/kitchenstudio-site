@@ -199,11 +199,10 @@ export default function Rental() {
           <h2 className="secTitle">キャンセルポリシー</h2>
           <div className="policyCard">
             <ul>
-              <li>7日前まで：無料</li>
-              <li>6〜3日前：ご予約金の 50%</li>
-              <li>2日前〜当日：ご予約金の 100%</li>
+              <li>受け取り２日前正午まで：無料</li>
+              <li>予約＝決済となりますが３日前までにキャンセルのご連絡を受けた場合返金いたします。<br/>決済方法により返金手数料をご負担いただく場合がございます。</li>
+              <li>２日前正午〜当日：商品代金の 100%</li>
             </ul>
-            <p className="smallNote">日程変更は1回まで無料（空き状況により）。</p>
           </div>
         </section>
 
@@ -257,7 +256,6 @@ const amenities = [
       { label: "流し台", icon: "🚰" },
       { label: "調理台", icon: "🍽️" },
       { label: "電子レンジ", icon: "🧁" },
-      { label: "炊飯器", note: "3合炊き", icon: "🍚" },
       { label: "冷凍冷蔵庫", note: "120L", icon: "🧊" },
       {
         label: "調理用具",

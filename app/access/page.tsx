@@ -6,7 +6,6 @@ export default function AccessPage() {
   // 住所や表示名は好きに差し替えOK
   const PLACE_NAME = "Kitchen Studio";
   const ADDRESS = "〒420-0841 静岡県静岡市葵区上足洗2-11-47";
-  const PARKING = "近隣コインパーキングをご利用ください（提携なし）";
   const MAP_Q = encodeURIComponent(`${PLACE_NAME} ${ADDRESS}`);
 
   return (

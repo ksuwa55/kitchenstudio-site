@@ -14,12 +14,6 @@ export default function Home() {
             <source src="/assets/media/miyabisai.mp4" type="video/mp4" />
           </video>
         </div>
-
-        <div className="heroInner">
-          <div className="siteTitle">
-            <a href="/"><h1>雅菜</h1></a>
-          </div> 
-        </div>
       </section>
 
       <main>

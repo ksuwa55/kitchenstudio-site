@@ -1,5 +1,11 @@
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif; }
+html, body { 
+  margin: 0; 
+  padding: 0; 
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans JP", sans-serif; 
+  background: #FFFEF6;
+  color: #584C44;
+}
 
 :root {
   --hero-min-h: 80vh;

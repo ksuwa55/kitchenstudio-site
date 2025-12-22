@@ -10,7 +10,7 @@ export default function Header() {
 
   // replace with your real URLs
   const STORES_BOOK_URL = 'https://stores.jp/your-shop/booking';
-  const INSTAGRAM_URL  = 'https://www.instagram.com/your_account/';
+  const INSTAGRAM_URL = 'https://www.instagram.com/miyabi_sai/';
 
   // helper to set active link
   const isActive = (href: string) => pathname === href;

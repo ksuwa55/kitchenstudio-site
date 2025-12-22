@@ -3,7 +3,7 @@
 export default function Home() {
   // TODO: replace with your real URLs
   const STORES_BOOK_URL = 'https://stores.jp/your-shop/booking';
-  const INSTAGRAM_URL = 'https://www.instagram.com/your_account/';
+  const INSTAGRAM_URL = 'https://www.instagram.com/miyabi_sai/';
 
   return (
     <>

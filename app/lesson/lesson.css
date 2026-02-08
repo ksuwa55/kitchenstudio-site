@@ -31,7 +31,7 @@
 /* 講師 */
 .lessonPage .instructorsGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 18px;
 }
 
@@ -44,11 +44,11 @@
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   padding: 16px;
+  max-width: 880px;
 }
 
 .lessonPage .portrait {
   width: 100%;
-  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 10px;
   background: #f6f6f6;
@@ -56,12 +56,16 @@
 
 .lessonPage .portrait img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
   display: block;
 }
 
-.lessonPage .teacherBody { display: grid; gap: 6px; }
+.lessonPage .teacherBody { 
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 540px;
+ }
 .lessonPage .teacherName { margin: 0; font-size: 20px; font-weight: 800; }
 .lessonPage .teacherRole { margin: 0; color: #666; }
 .lessonPage .teacherBio { margin: 4px 0 0; color: #444; }

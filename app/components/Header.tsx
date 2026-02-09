@@ -38,9 +38,9 @@ export default function Header() {
           <li><Link href="/">Home</Link></li>
           <li><Link href="/rental">Rental Space</Link></li>
           <li><Link href="/deli">Deli</Link></li>
+          <li><Link href="/lesson">Lesson</Link></li>
           <li><Link href="/access">Access</Link></li>
-          <li><a href={STORES_BOOK_URL} target="_blank" rel="noopener noreferrer">Reservation</a></li>
-          <li><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><Link href="/contact">Contact</Link></li>
         </ul>
       </div>
     </header>

@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import "./lesson.css";
 
 type LessonItem = {
@@ -27,49 +24,51 @@ const INSTRUCTORS = [
   },
 ];
 
-export default function LessonPage() {
+async function fetchLessons(): Promise<LessonItem[]> {
+  const SERVICE_DOMAIN = process.env.MICROCMS_SERVICE_DOMAIN;
+  const API_KEY = process.env.MICROCMS_API_KEY;
+
+  if (!SERVICE_DOMAIN || !API_KEY) {
+    throw new Error("MICROCMS env missing");
+  }
+
+  const url = `https://${SERVICE_DOMAIN}.microcms.io/api/v1/lessons?orders=order`;
+
+  const res = await fetch(url, {
+    headers: { "X-MICROCMS-API-KEY": API_KEY },
+    cache: "force-cache", // ビルド時固定
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`microCMS not ok: ${res.status} ${text}`);
+  }
+
+  const data = await res.json();
+  return (data.contents ?? []) as LessonItem[];
+}
+
+function formatDate(iso: string) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    weekday: "short",
+  });
+}
+
+export default async function LessonPage() {
   const ORDER_URL = "https://stores.jp/your-store/lessons";
   const REQUEST_URL = "https://forms.gle/your-request-form";
   const heroImage = "/assets/media/lesson_4577.JPG";
 
-  const [lessons, setLessons] = useState<LessonItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchLessons = async () => {
-      try {
-        const res = await fetch("/api/lessons");
-        if (!res.ok) {
-          throw new Error("Failed to fetch /api/lessons");
-        }
-        const data = (await res.json()) as LessonItem[];
-        setLessons(data);
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchLessons();
-  }, []);
-
-  // "2025-11-02 (日)" みたいな表示にする
-  const formatDate = (iso: string) => {
-    if (!iso) return "";
-    const d = new Date(iso);
-    if (Number.isNaN(d.getTime())) return iso;
-    return d.toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      weekday: "short",
-    });
-  };
+  const lessons = await fetchLessons();
 
   return (
     <>
-      {/* 画像ヒーロー */}
       <section className="hero heroGradient pageHero" aria-label="Hero">
         <div className="heroImageWrap" aria-hidden>
           <img src={heroImage} alt="レッスンのイメージ" />
@@ -77,16 +76,14 @@ export default function LessonPage() {
       </section>
 
       <main className="lessonPage">
-        {/* コンセプト */}
         <section id="concept" className="section">
           <h1 className="pageTitle">ヴィーガンフードレッスン(毎月第日曜日＋不定)</h1>
           <p className="lead">
-            野菜ソムリエプロ、J-Veganist、発酵料理士インストラクター、発酵ごはんとお菓子のmadoi認定講師のオーナーが、旬の野菜をテーマに発酵調味料を活かしたお料理のレッスンをします。<br />
-            参加者全員でヘルシーランチを作り、その場で召し上がっていただきます。グループのリクエストにお応えするプライベートレッスンも承ります。
+            野菜ソムリエプロ、J-Veganist、発酵料理士インストラクター、発酵ごはんとお菓子のmadoi認定講師のオーナーが、
+            旬の野菜をテーマに発酵調味料を活かしたお料理のレッスンをします。
           </p>
         </section>
 
-        {/* 講師紹介 */}
         <section id="instructors" className="section">
           <h2 className="secTitle">講師紹介</h2>
 
@@ -100,7 +97,7 @@ export default function LessonPage() {
                   <h3 className="teacherName">{t.name}</h3>
                   <p className="teacherRole">{t.role}</p>
                   <p className="teacherBio">{t.bio}</p>
-                  <ul className="teacherTags" aria-label="得意分野">
+                  <ul className="teacherTags">
                     {t.tags.map((tag) => (
                       <li key={tag}>{tag}</li>
                     ))}
@@ -111,59 +108,49 @@ export default function LessonPage() {
           </div>
         </section>
 
-        {/* 開催レッスン（一覧） */}
         <section id="schedule" className="section">
           <h2 className="secTitle">開催予定</h2>
 
-          {loading && <p>開催予定を読み込み中です…</p>}
-
-          {!loading && (
-            <div className="lessonList">
-              {lessons.map((c) => (
-                <article key={c.id} className="lessonCard">
-                  <div className="lessonThumb">
-                    {c.image && <img src={c.image.url} alt={c.title} />}
+          <div className="lessonList">
+            {lessons.map((c) => (
+              <article key={c.id} className="lessonCard">
+                <div className="lessonThumb">
+                  {c.image && <img src={c.image.url} alt={c.title} />}
+                </div>
+                <div className="lessonMain">
+                  <h3 className="lessonTitle">{c.title}</h3>
+                  <div className="lessonMeta">
+                    <span className="metaItem">{formatDate(c.date)}</span>
+                    <span className="dot">・</span>
+                    <span className="metaItem">定員 {c.capacity} 名</span>
                   </div>
-                  <div className="lessonMain">
-                    <h3 className="lessonTitle">{c.title}</h3>
-                    <div className="lessonMeta">
-                      <span className="metaItem">{formatDate(c.date)}</span>
-                      <span className="dot">・</span>
-                      <span className="metaItem">定員 {c.capacity} 名</span>
-                    </div>
-                    {c.desc && <p className="lessonDesc">{c.desc}</p>}
-                    <div className="lessonFoot">
-                      <div className="lessonPrice">{c.price}</div>
-                      <a
-                        className="btnPrimary"
-                        href={c.applyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        申し込む
-                      </a>
-                    </div>
+                  {c.desc && <p className="lessonDesc">{c.desc}</p>}
+                  <div className="lessonFoot">
+                    <div className="lessonPrice">{c.price}</div>
+                    <a
+                      className="btnPrimary"
+                      href={c.applyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      申し込む
+                    </a>
                   </div>
-                </article>
-              ))}
-            </div>
-          )}
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
-        {/* 仮予約・決済 */}
         <section id="order" className="section">
           <div className="ctaCard">
             <div className="ctaText">
               <h2 className="secTitle">仮予約・決済</h2>
               <p>外部サイト（STORES）にてお手続きください。空席状況は随時更新されます。</p>
             </div>
+
             <div className="ctaBtns">
-              <a
-                className="btnPrimary"
-                href={ORDER_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a className="btnPrimary" href={ORDER_URL} target="_blank" rel="noopener noreferrer">
                 申し込む
               </a>
               <a className="btnGhost" href="mailto:info@example.com">
@@ -173,21 +160,27 @@ export default function LessonPage() {
           </div>
         </section>
 
-        {/* グループ向けリクエスト */}
         <section id="request" className="section">
-          <h2 className="secTitle">リクエスト（グループ向け）</h2>
-          <p className="lead">
-            チームビルディングや親子向け、プライベートレッスンのご相談も承ります。
-            日時や人数、ご希望のテーマをお知らせください。
-          </p>
-          <a
-            className="btnPrimary"
-            href={REQUEST_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            リクエストフォームを開く
-          </a>
+          <div className="ctaCard">
+            <div className="ctaText">
+              <h2 className="secTitle">リクエスト（グループ向け）</h2>
+              <p className="lead">
+                チームビルディングや親子向け、プライベートレッスンのご相談も承ります。
+                日時や人数、ご希望のテーマをお知らせください。
+              </p>
+            </div>
+
+            <div className="ctaBtns">
+              <a
+                className="btnPrimary"
+                href={REQUEST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                リクエストフォームを開く
+              </a>
+            </div>
+          </div>
         </section>
       </main>
     </>

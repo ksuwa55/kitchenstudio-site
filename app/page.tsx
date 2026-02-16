@@ -16,8 +16,13 @@ export default function Home() {
 
   // Instagramの埋め込みスクリプトを1回だけ読み込んで、描画後に処理を走らせる
   useEffect(() => {
-    const w = window as any;
-
+    const w = window as typeof window & {
+      instgrm?: {
+        Embeds?: {
+          process?: () => void;
+        };
+      };
+    };
     const processEmbeds = () => {
       if (w?.instgrm?.Embeds?.process) {
         w.instgrm.Embeds.process();

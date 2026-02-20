@@ -3,7 +3,7 @@ name: Deploy staging (Next.js, S3 + CloudFront)
 on:
   push:
     branches:
-      - develop
+      - develop   # develop に push したらデプロイ
 
 jobs:
   deploy-staging:
@@ -13,6 +13,8 @@ jobs:
       AWS_REGION: ${{ secrets.AWS_REGION }}
       S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
       CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+      MICROCMS_SERVICE_DOMAIN: ${{ secrets.MICROCMS_SERVICE_DOMAIN }}
+      MICROCMS_API_KEY: ${{ secrets.MICROCMS_API_KEY }}
 
     steps:
       - name: Checkout repository
@@ -27,9 +29,7 @@ jobs:
         run: npm ci
 
       - name: Build Next.js app
-        # package.json の "build" が
-        #   next build && next export
-        # になっている想定です
+        # next.config で output: "export" 想定
         run: npm run build
 
       - name: Configure AWS credentials
@@ -37,7 +37,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Install AWS CLI
         run: |
@@ -46,8 +46,7 @@ jobs:
 
       - name: Sync exported site to S3
         run: |
-          aws s3 sync ./out s3://$S3_BUCKET_NAME \
-            --delete
+          aws s3 sync ./out s3://$S3_BUCKET_NAME --delete
 
       - name: Create CloudFront invalidation
         run: |

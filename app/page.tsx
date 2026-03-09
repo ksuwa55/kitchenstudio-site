@@ -89,7 +89,7 @@ export default function Home() {
               <a href={STORES_BOOK_URL}>予約</a>
             </div>
             <div className="deli">
-              <img src="/assets/media/deli3−2.jpg" alt="デリ" />
+              <img src="/assets/media/deli_home.jpg" alt="デリ" />
               <p>
                 デリ
                 <br />

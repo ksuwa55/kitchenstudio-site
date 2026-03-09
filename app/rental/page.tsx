@@ -4,7 +4,8 @@ import "./rental.css"; // ← 追加
 
 export default function Rental() {
   const BOOKING_URL = "https://stores.jp/your-store/reserve";
-  const youtubeId = "dQw4w9WgXcQ"; // 実IDに変更
+  const RENTAL_BOOK_URL = "https://reserva.be/miyabisai";
+  const youtubeId = "dQw4w9WgXcQ";
   const heroImages = [
     "/assets/media/studio2.jpg",
     "/assets/media/studio3.jpg",
@@ -135,7 +136,7 @@ export default function Rental() {
             <h3>利用規約</h3>
             <p>
               ご予約前に必ず
-              <a href="/terms" target="_blank" rel="noopener noreferrer">
+              <a href="https://drive.google.com/file/d/1tEytN8a1MOTZ4WLOYSW9Je0f2OuxzKhj/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">
                 利用規約
               </a>
               をご確認ください。
@@ -147,7 +148,7 @@ export default function Rental() {
               <a
                 id="reserveBtn"
                 className="btnPrimary disabled"
-                href="https://stores.jp/your-store/reserve"
+                href={RENTAL_BOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -207,7 +208,7 @@ export default function Rental() {
               </p>
             </div>
             <div className="ctaBtns">
-              <a className="btnPrimary" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+              <a className="btnPrimary" href={RENTAL_BOOK_URL} target="_blank" rel="noopener noreferrer">
                 予約ページを開く
               </a>
               <a className="btnGhost" href="/contact">お問い合わせフォーム</a>
@@ -220,9 +221,11 @@ export default function Rental() {
           <h2 className="secTitle">キャンセルポリシー</h2>
           <div className="policyCard">
             <ul>
-              <li>受け取り２日前正午まで：無料</li>
-              <li>予約＝決済となりますが３日前までにキャンセルのご連絡を受けた場合返金いたします。<br/>決済方法により返金手数料をご負担いただく場合がございます。</li>
-              <li>２日前正午〜当日：商品代金の 100%</li>
+              <li>
+                予約日の3日前0:00まで（例：予約日が5日の場合は2日0:00まで）にキャンセルの旨を<a href="/contact">問い合わせフォーム</a>、または <strong>miyabisai.info@gmail.com</strong> へご連絡ください。
+                連絡の際はタイトルに「⚫︎月⚫︎日の本予約取り消し希望」と記入し、予約番号・お名前を忘れずにご記載ください。
+              </li>
+              <li>予約日3日前0:00以降のキャンセルは返金致しかねます。</li>
             </ul>
           </div>
         </section>
@@ -236,6 +239,7 @@ export default function Rental() {
               <ul>
                 <li>近隣への配慮のため、入退室時間の厳守にご協力ください。</li>
                 <li>備品の持ち出しはできません。持込電化製品は事前にお知らせください。</li>
+                <li>ご利用に際しては必ず利用規約をご確認ください。</li>
               </ul>
             </div>
             <div className="noteCard">

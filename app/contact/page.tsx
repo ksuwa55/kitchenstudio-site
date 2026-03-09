@@ -7,15 +7,28 @@ import "./contact.css";
 type FormState = {
   name: string;
   email: string;
+  subject: string;
   message: string;
   // スパム対策（人間は触らないhidden）
   website?: string;
 };
 
+const SUBJECTS = [
+  "キャンセルに関して",
+  "レンタルスペース利用中のご連絡",
+  "レンタルスペースの利用に関するお問い合わせ",
+  "レンタルスペース営業利用・商用撮影等のご相談",
+  "デリに関するお問い合わせ",
+  "レッスンに関するお問い合わせ",
+  "グループレッスンのご相談",
+  "その他",
+];
+
 export default function ContactPage() {
   const [form, setForm] = useState<FormState>({
     name: "",
     email: "",
+    subject: "",
     message: "",
     website: "", // honey pot
   });
@@ -33,8 +46,14 @@ export default function ContactPage() {
     if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
       e.email = "メールアドレスの形式が正しくありません。";
     }
+    if (!data.subject) e.subject = "お問い合わせの種類を選択してください。";
     if (!data.message.trim()) e.message = "お問い合わせ内容を入力してください。";
     return e;
+  };
+
+  const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setForm((prev) => ({ ...prev, subject: e.target.value }));
+    setErrors((prev) => ({ ...prev, subject: "" }));
   };
 
   const onChange = (
@@ -52,7 +71,7 @@ export default function ContactPage() {
     // honey pot（ボットが入れると弾く）
     if (form.website) {
       setStatus({ ok: true, msg: "送信しました。" });
-      setForm({ name: "", email: "", message: "", website: "" });
+      setForm({ name: "", email: "", subject: "", message: "", website: "" });
       return;
     }
 
@@ -70,6 +89,7 @@ export default function ContactPage() {
         body: JSON.stringify({
           name: form.name,
           email: form.email,
+          subject: form.subject,
           message: form.message,
         }),
       });
@@ -77,7 +97,7 @@ export default function ContactPage() {
       if (!res.ok) throw new Error(await res.text().catch(() => "Send error"));
 
       setStatus({ ok: true, msg: "送信しました。折り返しご連絡いたします。" });
-      setForm({ name: "", email: "", message: "", website: "" });
+      setForm({ name: "", email: "", subject: "", message: "", website: "" });
     } catch (err) {
       setStatus({
         ok: false,
@@ -161,6 +181,29 @@ export default function ContactPage() {
                 {errors.email && (
                   <p id="err-email" className="error">
                     {errors.email}
+                  </p>
+                )}
+              </div>
+
+              <div className="field fieldFull">
+                <label htmlFor="subject">お問い合わせの種類</label>
+                <select
+                  id="subject"
+                  name="subject"
+                  value={form.subject}
+                  onChange={onSelectChange}
+                  aria-invalid={!!errors.subject}
+                  aria-describedby={errors.subject ? "err-subject" : undefined}
+                  required
+                >
+                  <option value="">選択してください</option>
+                  {SUBJECTS.map((s) => (
+                    <option key={s} value={s}>{s}</option>
+                  ))}
+                </select>
+                {errors.subject && (
+                  <p id="err-subject" className="error">
+                    {errors.subject}
                   </p>
                 )}
               </div>

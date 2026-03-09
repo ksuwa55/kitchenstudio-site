@@ -19,7 +19,7 @@ const INSTRUCTORS = [
       "野菜ソムリエプロ・J-Veganist・発酵料理士インストラクター・発酵ごはんとお菓子のmadoi認定講師・SBS学苑講師",
     photo: "/assets/media/instructor_pic.JPG",
     bio:
-      "季節の食材と家庭の台所にフィットするレシピを提案。和のだしから発酵まで、日常に活きる技を大切にしています。",
+      "季節の食材と家庭の台所にフィットするレシピを提案。植物由来の出汁から発酵まで、日常に活きる技を大切にしています。",
     tags: ["基本の和食", "発酵", "保存食"],
   },
 ];
@@ -77,7 +77,7 @@ export default async function LessonPage() {
 
       <main className="lessonPage">
         <section id="concept" className="section">
-          <h1 className="pageTitle">ヴィーガンフードレッスン(毎月第日曜日＋不定)</h1>
+          <h1 className="pageTitle">ヴィーガンフードレッスン(毎月第２土曜日及び第３土曜日または日曜日＋不定)</h1>
           <p className="lead">
             野菜ソムリエプロ、J-Veganist、発酵料理士インストラクター、発酵ごはんとお菓子のmadoi認定講師のオーナーが、
             旬の野菜をテーマに発酵調味料を活かしたお料理のレッスンをします。

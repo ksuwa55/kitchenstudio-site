@@ -47,10 +47,7 @@ export default function Rental() {
           <div className="areaBox">
             <div className="areaItem">
               <span className="areaLabel">広さ</span>
-              <ul>
-                <li>フリースペース：約14帖</li>
-                <li>キッチン：約6.8帖</li>
-              </ul>
+              <span>約17帖</span>
             </div>
           </div>
         </section>
@@ -92,14 +89,14 @@ export default function Rental() {
                 </div>
                 <div className="priceValue">
                   <span className="amount">{p.price}</span>
-                  <span className="unit">/ 時間</span>
+                  {p.minHours > 0 && <span className="unit">/ 2時間</span>}
                 </div>
                 <ul className="priceDetails">
                   {p.includes.map((li) => (
                     <li key={li}>{li}</li>
                   ))}
                 </ul>
-                <p className="smallNote">※ 表示は税込み。最低利用時間 {p.minHours} 時間。</p>
+                {p.minHours > 0 && <p className="smallNote">※ 表示は税込み。最低利用時間 {p.minHours} 時間。</p>}
               </div>
             ))}
           </div>
@@ -176,6 +173,30 @@ export default function Rental() {
           `}
         </script>
 
+        {/* 予約の流れ */}
+        <section id="flow" className="section">
+          <h2 className="secTitle">レンタルスペース予約の流れ</h2>
+          <div className="flowCard">
+          <ol className="flowList">
+            <li>
+              外部サイト（<a href="https://id-sso.reserva.be/login/business" target="_blank" rel="noopener noreferrer">reserva.be</a>）にて仮予約を行ってください。
+            </li>
+            <li>
+              予約サイトからの自動メールとは別に <strong>miyabisai.info@gmail.com</strong> より本予約に関する案内メールが送られます。案内は予約日のおおむね20日前です。
+            </li>
+            <li>
+              <a href="https://miyabisai.stores.jp/" target="_blank" rel="noopener noreferrer">STORES</a> にてレンタルスペース利用券の購入決済を行うことで本予約完了します。
+            </li>
+            <li>
+              STORESより決済完了の自動メールが送られます。
+            </li>
+            <li>
+              後日利用マニュアル等を <strong>miyabisai.info@gmail.com</strong> より送付いたします。
+            </li>
+          </ol>
+          </div>
+        </section>
+
         {/* 予約導線 */}
         <section id="booking" className="section">
           <div className="ctaCard">
@@ -247,16 +268,24 @@ const amenities = [
       { label: "清掃用具", note: "掃除機・モップ等", icon: "🧹" },
       { label: "テーブル", note: "折畳み可", icon: "🪑" },
       { label: "いす", note: "最大8脚", icon: "🪑" },
+      { label: "冷凍冷蔵庫", note: "120L", icon: "🧊" },
+      { label: "エアコン", icon: "❄️" },
+      { label: "湯沸かしポッド", icon: "🫖" },
+      {
+        label: "食器",
+        note: "手洗い、食器等の洗浄に使用可能、汚れ物不可",
+        icon: "🍴",
+      },
+      { label: "流し台", note: "手洗い、食器等の洗浄に使用可能、汚れ物不可", icon: "🚰" },
     ],
   },
   {
-    category: "キッチン",
+    category: "キッチンオプション",
     items: [
       { label: "ガスコンロ（3口）", note: "高火力タイプ", icon: "🔥" },
       { label: "流し台", icon: "🚰" },
       { label: "調理台", icon: "🍽️" },
-      { label: "電子レンジ", icon: "🧁" },
-      { label: "冷凍冷蔵庫", note: "120L", icon: "🧊" },
+      { label: "オーブンレンジ", icon: "🧁" },
       {
         label: "調理用具",
         note: "鍋・フライパン・ざる・ボウル・包丁・まな板・おたま・トング等",
@@ -264,7 +293,7 @@ const amenities = [
       },
       {
         label: "食器・カトラリー類",
-        note: "平皿・小鉢・ガラスコップ・茶碗・どんぶり・湯呑み・スプーン・フォーク・箸など",
+        note: "平皿・小鉢・茶碗・湯呑み・スプーン・フォーク・箸など",
         icon: "🍴",
       },
     ],
@@ -274,33 +303,33 @@ const amenities = [
 
 const pricing = [
   {
-    title: "基本プラン（キッチン設備、調理器具あり）",
+    title: "基本プラン",
+    caption: "料理以外のワークショップ、動画等の撮影、配信等",
+    price: "¥2,800〜",
+    minHours: 2,
+    includes: [
+      "テーブル/椅子、キッチンは流し台のみ利用可",
+      "一部の食器、湯沸かしポットは利用可",
+      "Wi-Fi/電源",
+      "※時間は準備から撤収までを含みます",
+    ],
+  },
+  {
+    title: "キッチンオプションプラン（キッチン設備、調理器具あり）",
     caption: "料理会、料理教室、料理動画等撮影、配信等",
-    price: "¥1,300",
+    price: "¥3,200〜",
     minHours: 2,
     includes: [
       "キッチン設備・調理器具・食器の利用可",
       "Wi-Fi/電源",
-      "片付け用洗剤・消耗品",
+      "片付け用洗剤等",
       "※時間は準備から撤収までを含みます",
     ],
   },
   {
-    title: "ライトプラン（キッチン部分の使用不可）",
-    caption: "料理以外のワークショップ、動画等の撮影、配信等",
-    price: "¥900",
-    minHours: 2,
-    includes: [
-      "テーブル/椅子のみ利用可",
-      "Wi-Fi/電源",
-      "簡易清掃のみ",
-      "※時間は準備から撤収までを含みます",
-    ],
-  },
-  {
-    title: "営業プラン",
+    title: "営業利用をご検討の方へ（許可付き厨房の使用）",
     caption:
-      "期間限定レストラン・カフェ、フードフェスの商品作り等にご利用いただけます。",
+      "当アトリエの営業許可を取得した厨房（別室）の利用については、期間限定レストラン・カフェ、フードフェスの商品作り等にご利用いただけますが、レンタルスペースの利用規約とは異なり、個別の利用条件と契約（覚書・誓約書など）が必要となります。ご利用を希望される方は、必ず事前にご相談ください。なお、ご利用にあたっては、賠償責任保険へのご加入をお願いしております。誠に恐縮ですが、衛生管理及び事故責任の観点から、初回の利用希望者はお断りする場合があります。まずは、具体的な利用内容とご経験を添えてお問い合わせください。",
     price: "ご相談",
     minHours: 0,
     includes: [

@@ -210,7 +210,7 @@ export default function Rental() {
               <a className="btnPrimary" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                 予約ページを開く
               </a>
-              <a className="btnGhost" href="mailto:info@example.com">メールで問い合わせ</a>
+              <a className="btnGhost" href="/contact">お問い合わせフォーム</a>
             </div>
           </div>
         </section>
@@ -235,7 +235,7 @@ export default function Rental() {
               <h3>ご利用前</h3>
               <ul>
                 <li>近隣への配慮のため、入退室時間の厳守にご協力ください。</li>
-                <li>備品の持ち出しはできません。持込電化製品は事前申請が必要です。</li>
+                <li>備品の持ち出しはできません。持込電化製品は事前にお知らせください。</li>
               </ul>
             </div>
             <div className="noteCard">
@@ -248,7 +248,7 @@ export default function Rental() {
             <div className="noteCard">
               <h3>ご退出時</h3>
               <ul>
-                <li>現状復帰・ゴミは分別のうえ指定場所へ。過度な汚れは別途清掃費。</li>
+                <li>ゴミは原則お持ち帰りです。（オプションで処理のお申し込みもできます）。</li>
                 <li>破損があった場合は必ず申告してください。</li>
               </ul>
             </div>

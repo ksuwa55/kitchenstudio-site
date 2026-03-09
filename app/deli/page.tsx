@@ -121,8 +121,8 @@ export default async function DeliPage() {
               <a className="btnPrimary" href={DELI_BOOK_URL} target="_blank" rel="noopener noreferrer">
                 注文する
               </a>
-              <a className="btnGhost" href="mailto:info@example.com">
-                メールで問い合わせ
+              <a className="btnGhost" href="/contact">
+                お問い合わせフォーム
               </a>
             </div>
           </div>

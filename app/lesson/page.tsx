@@ -153,8 +153,8 @@ export default async function LessonPage() {
               <a className="btnPrimary" href={LESSON_BOOK_URL} target="_blank" rel="noopener noreferrer">
                 申し込む
               </a>
-              <a className="btnGhost" href="mailto:info@example.com">
-                メールで問い合わせ
+              <a className="btnGhost" href="/contact">
+                お問い合わせフォーム
               </a>
             </div>
           </div>

@@ -61,7 +61,7 @@ function formatDate(iso: string) {
 }
 
 export default async function LessonPage() {
-  const ORDER_URL = "https://stores.jp/your-store/lessons";
+  const LESSON_BOOK_URL = "https://miyabisai.stores.jp/reserve/foodlesson";
   const REQUEST_URL = "https://forms.gle/your-request-form";
   const heroImage = "/assets/media/lesson_4577.JPG";
 
@@ -150,7 +150,7 @@ export default async function LessonPage() {
             </div>
 
             <div className="ctaBtns">
-              <a className="btnPrimary" href={ORDER_URL} target="_blank" rel="noopener noreferrer">
+              <a className="btnPrimary" href={LESSON_BOOK_URL} target="_blank" rel="noopener noreferrer">
                 申し込む
               </a>
               <a className="btnGhost" href="mailto:info@example.com">

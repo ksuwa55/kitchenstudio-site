@@ -7,7 +7,9 @@ type InstaNewsItem = {
 };
 
 export default async function Home() {
-  const STORES_BOOK_URL = "https://stores.jp/your-shop/booking";
+  const RENTAL_BOOK_URL = "https://reserva.be/miyabisai";
+  const DELI_BOOK_URL = "https://miyabisai.stores.jp";
+  const LESSON_BOOK_URL = "https://miyabisai.stores.jp/reserve/foodlesson";
 
   let newsItems: InstaNewsItem[] = [];
   try {
@@ -58,7 +60,7 @@ export default async function Home() {
                 <br />
                 <small>「食」を中心に語らいの場を</small>
               </p>
-              <a href={STORES_BOOK_URL}>予約</a>
+              <a href={RENTAL_BOOK_URL}>予約</a>
             </div>
             <div className="deli">
               <img src="/assets/media/deli_home.jpg" alt="デリ" />
@@ -67,7 +69,7 @@ export default async function Home() {
                 <br />
                 <small>植物由来の発酵弁当</small>
               </p>
-              <a href={STORES_BOOK_URL}>予約</a>
+              <a href={DELI_BOOK_URL}>予約</a>
             </div>
             <div className="lesson">
               <img src="/assets/media/lesson_4577.JPG" alt="レッスン" />
@@ -76,7 +78,7 @@ export default async function Home() {
                 <br />
                 <small>旬の野菜と発酵を学べるヴィーガン料理</small>
               </p>
-              <a href={STORES_BOOK_URL}>予約</a>
+              <a href={LESSON_BOOK_URL}>予約</a>
             </div>
           </div>
         </section>

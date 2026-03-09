@@ -7,6 +7,7 @@ type DeliMenuItem = {
   price: string;
   note: string;
   image?: { url: string; width: number; height: number };
+  book_url?: string;
 };
 
 async function fetchMenu(): Promise<DeliMenuItem[]> {
@@ -34,7 +35,7 @@ async function fetchMenu(): Promise<DeliMenuItem[]> {
 }
 
 export default async function DeliPage() {
-  const ORDER_URL = "https://stores.jp/your-store/deli";
+  const DELI_BOOK_URL = "https://miyabisai.stores.jp";
   const heroImage = "/assets/media/deli1-3.jpg";
 
   const menuItems = await fetchMenu();
@@ -72,6 +73,16 @@ export default async function DeliPage() {
                   <h3 className="title">{m.title}</h3>
                   <p className="desc">{m.desc}</p>
                   <div className="price">{m.price}</div>
+                  {m.book_url && (
+                    <a
+                      className="btnPrimary"
+                      href={m.book_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      予約する
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
@@ -107,7 +118,7 @@ export default async function DeliPage() {
               <p>個数・受け取り日時をお選びのうえ、ご注文ください。外部サイトに遷移します。</p>
             </div>
             <div className="ctaBtns">
-              <a className="btnPrimary" href={ORDER_URL} target="_blank" rel="noopener noreferrer">
+              <a className="btnPrimary" href={DELI_BOOK_URL} target="_blank" rel="noopener noreferrer">
                 注文する
               </a>
               <a className="btnGhost" href="mailto:info@example.com">

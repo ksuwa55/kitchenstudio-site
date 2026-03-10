@@ -1,9 +1,9 @@
-// app/rental/page.tsx
 "use client";
-import "./rental.css"; // ← 追加
+import { useState } from "react";
+import "./rental.css";
 
 export default function Rental() {
-  const BOOKING_URL = "https://stores.jp/your-store/reserve";
+  const [agreeTerms, setAgreeTerms] = useState(false);
   const RENTAL_BOOK_URL = "https://reserva.be/miyabisai";
   const youtubeId = "dQw4w9WgXcQ";
   const heroImages = [
@@ -142,37 +142,21 @@ export default function Rental() {
               をご確認ください。
             </p>
             <label className="agreeCheck">
-              <input type="checkbox" id="agreeTerms" /> 利用規約に同意する
+              <input type="checkbox" checked={agreeTerms} onChange={e => setAgreeTerms(e.target.checked)} /> 利用規約に同意する
             </label>
             <div className="agreeBtnWrap">
               <a
-                id="reserveBtn"
-                className="btnPrimary disabled"
-                href={RENTAL_BOOK_URL}
+                className={`btnPrimary${agreeTerms ? "" : " disabled"}`}
+                href={agreeTerms ? RENTAL_BOOK_URL : undefined}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-disabled={!agreeTerms}
               >
                 予約に進む
               </a>
             </div>
           </div>
         </section>
-
-        <script>
-          {`
-            document.addEventListener('DOMContentLoaded', () => {
-              const checkbox = document.getElementById('agreeTerms');
-              const button = document.getElementById('reserveBtn');
-              checkbox.addEventListener('change', () => {
-                if (checkbox.checked) {
-                  button.classList.remove('disabled');
-                } else {
-                  button.classList.add('disabled');
-                }
-              });
-            });
-          `}
-        </script>
 
         {/* 予約の流れ */}
         <section id="flow" className="section">

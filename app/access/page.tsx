@@ -1,6 +1,5 @@
-// app/access/page.tsx
 "use client";
-import "./access.css"; // ページ専用CSS
+import "./access.css";
 
 export default function AccessPage() {
   // 住所や表示名は好きに差し替えOK

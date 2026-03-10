@@ -30,7 +30,7 @@
 /* メニューカード */
 .deliPage .menuGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin-top: 12px;
 }
@@ -133,23 +133,17 @@
 }
 
 /* レスポンシブ */
-@media (max-width: 1024px) {
-  .deliPage .menuGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 768px) {
   .deliPage .menuGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+  .deliPage .secTitle { font-size: 22px; }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 640px) {
   .deliPage .menuGrid {
     grid-template-columns: 1fr;
   }
-  .deliPage .pageTitle {
-    font-size: 30px;
-  }
+  .deliPage .pageTitle { font-size: 28px; }
+  .deliPage .secTitle { font-size: 20px; }
 }

@@ -293,19 +293,22 @@
 /* ==============================
    レスポンシブ調整
 ============================== */
-@media (max-width: 840px) {
+@media (max-width: 1024px) {
   .rentalPage .amenitiesGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rentalPage .notesGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 768px) {
   .rentalPage .priceCards { grid-template-columns: 1fr; }
   .rentalPage .noticeRow { grid-template-columns: 1fr; }
-  .rentalPage .notesGrid { grid-template-columns: 1fr; }
+  .rentalPage .heroGallery { grid-template-columns: 1fr; }
+  .rentalPage .heroPhoto img { aspect-ratio: 3 / 2; }
+  .rentalPage .secTitle { font-size: 22px; }
 }
 
 @media (max-width: 640px) {
-  .rentalPage .heroGallery { grid-template-columns: 1fr; }
-  .rentalPage .heroPhoto img { aspect-ratio: 3 / 2; }
-}
-
-@media (max-width: 560px) {
   .rentalPage .amenitiesGrid { grid-template-columns: 1fr; }
-  .rentalPage .pageTitle { font-size: 30px; }
+  .rentalPage .notesGrid { grid-template-columns: 1fr; }
+  .rentalPage .pageTitle { font-size: 28px; }
+  .rentalPage .secTitle { font-size: 20px; }
 }

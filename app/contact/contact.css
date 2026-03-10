@@ -134,11 +134,14 @@
 }
 
 /* レスポンシブ */
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .contactPage .grid {
     grid-template-columns: 1fr;
   }
-  .contactPage .pageTitle {
-    font-size: 30px;
-  }
+  .contactPage .pageTitle { font-size: 28px; }
+}
+
+@media (max-width: 640px) {
+  .contactPage .pageTitle { font-size: 24px; }
+  .contactPage textarea { min-height: 120px; }
 }

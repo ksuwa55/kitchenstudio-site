@@ -51,7 +51,7 @@ export default async function Home() {
           <h2 className="section-title">サービス</h2>
           <div className="service-grid">
             <div className="rental">
-              <img src="/assets/media/studio2.jpg" alt="レンタルスペース" />
+              <img src="/assets/media/main1.jpg" alt="レンタルスペース" />
               <p>
                 レンタルスペース
                 <br />
@@ -62,7 +62,7 @@ export default async function Home() {
             <div className="deli">
               <img src="/assets/media/deli_home.jpg" alt="デリ" />
               <p>
-                デリ
+                デリ（予約制）
                 <br />
                 <small>植物由来の発酵弁当</small>
               </p>

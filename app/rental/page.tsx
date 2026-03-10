@@ -16,7 +16,7 @@ export default function Rental() {
       {/* hero section */}
       <section className="hero heroGradient pageHero" aria-label="Hero">
         <div className="heroImageWrap">
-          <img src="/assets/media/studio2.jpg" alt="レンタルスペースの内観" />
+          <img src="/assets/media/main1.jpg" alt="レンタルスペースの内観" />
         </div>
       </section>
 
@@ -105,7 +105,7 @@ export default function Rental() {
           <div className="noticeRow">
             <div className="noticeCard">
               <strong>延長</strong>：30分単位で承ります（空き状況による）。<br />
-              <strong>人数目安</strong>：〜8名（着席）。
+              <strong>人数目安</strong>：〜12名（着席）。
             </div>
             <div className="noticeCard">
               <strong>商用撮影</strong>：事前申請が必要です。内容によりお見積り。
@@ -180,7 +180,7 @@ export default function Rental() {
           <div className="flowCard">
           <ol className="flowList">
             <li>
-              外部サイト（<a href="https://id-sso.reserva.be/login/business" target="_blank" rel="noopener noreferrer">reserva.be</a>）にて仮予約を行ってください。
+              外部サイト（<a href={RENTAL_BOOK_URL} target="_blank" rel="noopener noreferrer">reserva.be</a>）にて仮予約を行ってください。
             </li>
             <li>
               予約サイトからの自動メールとは別に <strong>miyabisai.info@gmail.com</strong> より本予約に関する案内メールが送られます。案内は予約日のおおむね20日前です。
@@ -252,14 +252,20 @@ const amenities = [
       { label: "Wi-Fi", note: "高速・安定", icon: "📶" },
       { label: "手洗い・トイレ", note: "温水洗浄便座", icon: "🚻" },
       { label: "清掃用具", note: "掃除機・モップ等", icon: "🧹" },
-      { label: "テーブル", note: "折畳み可", icon: "🪑" },
-      { label: "いす", note: "最大8脚", icon: "🪑" },
-      { label: "冷凍冷蔵庫", note: "120L", icon: "🧊" },
+      { label: "テーブル", note: "折畳み可", icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="6" width="20" height="3" rx="1"/>
+          <line x1="5" y1="9" x2="5" y2="20"/>
+          <line x1="19" y1="9" x2="19" y2="20"/>
+        </svg>
+      ) },
+      { label: "いす", note: "最大12脚", icon: "🪑" },
+      { label: "冷凍冷蔵庫", icon: "🧊" },
       { label: "エアコン", icon: "❄️" },
-      { label: "湯沸かしポッド", icon: "🫖" },
+      { label: "湯沸かしポット", icon: "🫖" },
       {
         label: "食器",
-        note: "手洗い、食器等の洗浄に使用可能、汚れ物不可",
+        note: "食器　急須、湯呑み、ミニコップ",
         icon: "🍴",
       },
       { label: "流し台", note: "手洗い、食器等の洗浄に使用可能、汚れ物不可", icon: "🚰" },
@@ -268,7 +274,7 @@ const amenities = [
   {
     category: "キッチンオプション",
     items: [
-      { label: "ガスコンロ（3口）", note: "高火力タイプ", icon: "🔥" },
+      { label: "ガスコンロ（3口）", icon: "🔥" },
       { label: "流し台", icon: "🚰" },
       { label: "調理台", icon: "🍽️" },
       { label: "オーブンレンジ", icon: "🧁" },

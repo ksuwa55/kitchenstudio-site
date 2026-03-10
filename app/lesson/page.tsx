@@ -107,6 +107,19 @@ export default async function LessonPage() {
           </div>
         </section>
 
+        <section id="terms" className="section">
+          <h2 className="secTitle">利用規約</h2>
+          <div className="agreementBlock">
+            <p>
+              各レッスンのご予約前に必ず
+              <a href="https://drive.google.com/file/d/1DXH5Oz8pFPyYdmKa9BFklwRabt5teNnB/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                利用規約
+              </a>
+              をお読みください。
+            </p>
+          </div>
+        </section>
+
         <section id="schedule" className="section">
           <h2 className="secTitle">開催予定</h2>
 

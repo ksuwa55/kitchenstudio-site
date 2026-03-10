@@ -133,6 +133,14 @@
 
 .lessonPage .lessonPrice { font-weight: 800; }
 
+/* 利用規約 */
+.lessonPage .agreementBlock {
+  border: 1px solid #e4e4e4;
+  border-radius: 12px;
+  padding: 20px;
+  background: #fcfcfc;
+}
+
 /* CTA 共通 */
 .lessonPage .ctaCard {
   display: grid;

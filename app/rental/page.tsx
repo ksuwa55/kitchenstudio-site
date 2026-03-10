@@ -7,8 +7,8 @@ export default function Rental() {
   const RENTAL_BOOK_URL = "https://reserva.be/miyabisai";
   const youtubeId = "dQw4w9WgXcQ";
   const heroImages = [
-    "/assets/media/studio2.jpg",
-    "/assets/media/studio3.jpg",
+    "/assets/media/kitchin1.jpg",
+    "/assets/media/space1.jpg",
   ];
 
   return (
@@ -195,24 +195,6 @@ export default function Rental() {
               後日利用マニュアル等を <strong>miyabisai.info@gmail.com</strong> より送付いたします。
             </li>
           </ol>
-          </div>
-        </section>
-
-        {/* 予約導線 */}
-        <section id="booking" className="section">
-          <div className="ctaCard">
-            <div className="ctaText">
-              <h2 className="secTitle">仮予約・空き確認</h2>
-              <p>
-                ご希望の日時と用途をお知らせください。確認後、メールにてご連絡します。確定は外部サイト（STORES）でのお手続きとなります。
-              </p>
-            </div>
-            <div className="ctaBtns">
-              <a className="btnPrimary" href={RENTAL_BOOK_URL} target="_blank" rel="noopener noreferrer">
-                予約ページを開く
-              </a>
-              <a className="btnGhost" href="/contact">お問い合わせフォーム</a>
-            </div>
           </div>
         </section>
 

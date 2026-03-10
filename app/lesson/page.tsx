@@ -61,7 +61,6 @@ function formatDate(iso: string) {
 }
 
 export default async function LessonPage() {
-  const LESSON_BOOK_URL = "https://miyabisai.stores.jp/reserve/foodlesson";
   const REQUEST_URL = "https://forms.gle/your-request-form";
   const heroImage = "/assets/media/lesson_4577.JPG";
 
@@ -139,24 +138,6 @@ export default async function LessonPage() {
                 </div>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section id="order" className="section">
-          <div className="ctaCard">
-            <div className="ctaText">
-              <h2 className="secTitle">仮予約・決済</h2>
-              <p>外部サイト（STORES）にてお手続きください。空席状況は随時更新されます。</p>
-            </div>
-
-            <div className="ctaBtns">
-              <a className="btnPrimary" href={LESSON_BOOK_URL} target="_blank" rel="noopener noreferrer">
-                申し込む
-              </a>
-              <a className="btnGhost" href="/contact">
-                お問い合わせフォーム
-              </a>
-            </div>
           </div>
         </section>
 

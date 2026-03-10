@@ -35,7 +35,6 @@ async function fetchMenu(): Promise<DeliMenuItem[]> {
 }
 
 export default async function DeliPage() {
-  const DELI_BOOK_URL = "https://miyabisai.stores.jp";
   const heroImage = "/assets/media/deli1-3.jpg";
 
   const menuItems = await fetchMenu();
@@ -107,24 +106,6 @@ export default async function DeliPage() {
                 ))}
               </tbody>
             </table>
-          </div>
-        </section>
-
-        <section id="order" className="section">
-          {/* ここはあなたの既存のまま */}
-          <div className="ctaCard">
-            <div className="ctaText">
-              <h2 className="secTitle">注文・決済</h2>
-              <p>個数・受け取り日時をお選びのうえ、ご注文ください。外部サイトに遷移します。</p>
-            </div>
-            <div className="ctaBtns">
-              <a className="btnPrimary" href={DELI_BOOK_URL} target="_blank" rel="noopener noreferrer">
-                注文する
-              </a>
-              <a className="btnGhost" href="/contact">
-                お問い合わせフォーム
-              </a>
-            </div>
           </div>
         </section>
 

@@ -61,7 +61,6 @@ function formatDate(iso: string) {
 }
 
 export default async function LessonPage() {
-  const REQUEST_URL = "https://forms.gle/your-request-form";
   const heroImage = "/assets/media/lesson_4577.JPG";
 
   const lessons = await fetchLessons();
@@ -167,7 +166,7 @@ export default async function LessonPage() {
             <div className="ctaBtns">
               <a
                 className="btnPrimary"
-                href={REQUEST_URL}
+                href="/contact"
                 target="_blank"
                 rel="noopener noreferrer"
               >

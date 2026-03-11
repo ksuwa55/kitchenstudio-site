@@ -164,13 +164,13 @@ export default function Rental() {
           <div className="flowCard">
           <ol className="flowList">
             <li>
-              外部サイト（<a href={RENTAL_BOOK_URL} target="_blank" rel="noopener noreferrer">reserva.be</a>）にて仮予約を行ってください。
+              利用規約に同意後、上記 <strong>予約に進む</strong> にて仮予約を行ってください。外部サイトのリンクが開きます。
             </li>
             <li>
               予約サイトからの自動メールとは別に <strong>miyabisai.info@gmail.com</strong> より本予約に関する案内メールが送られます。案内は予約日のおおむね20日前です。
             </li>
             <li>
-              <a href="https://miyabisai.stores.jp/" target="_blank" rel="noopener noreferrer">STORES</a> にてレンタルスペース利用券の購入決済を行うことで本予約完了します。
+              STORESにてレンタルスペース利用券の購入決済を行うことで本予約完了します。
             </li>
             <li>
               STORESより決済完了の自動メールが送られます。

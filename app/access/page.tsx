@@ -57,12 +57,6 @@ export default function AccessPage() {
             <h2 className="secTitle">アクセス</h2>
             <ul className="list">
               <li>
-                東海道線「静岡駅」東口より徒歩35分
-              </li>
-              <li>
-                静岡鉄道「新静岡駅」から徒歩30分
-              </li>
-              <li>
                 静鉄バス 上足洗北マックスバリュ上足洗店前下車 徒歩2分
               </li>
               <li>

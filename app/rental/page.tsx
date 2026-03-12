@@ -123,7 +123,7 @@ export default function Rental() {
             <div className="videoWrap">
               <iframe
                 className="ytFrame"
-                src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1&playsinline=1"
+                src="https://www.youtube.com/embed/XwHVp5HzlT8"
                 title="入館方法"
                 loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

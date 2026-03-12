@@ -2,6 +2,8 @@ name: Deploy production (Next.js, S3 + CloudFront)
 
 on:
   workflow_dispatch:
+    branches:
+      - main
 
 jobs:
   deploy-production:

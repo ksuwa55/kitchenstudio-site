@@ -25,7 +25,7 @@ export default async function Home() {
       <section className="hero heroGradient" aria-label="Hero">
         <div className="heroVideoWrap" aria-hidden>
           <video autoPlay muted loop playsInline poster="/assets/media/poster.jpg">
-            <source src="/assets/media/miyabisaiHP _movie.mp4" type="video/mp4" />
+            <source src="/assets/media/miyabisaiHP_movie.mp4" type="video/mp4" />
           </video>
         </div>
       </section>

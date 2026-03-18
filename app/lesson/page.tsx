@@ -19,8 +19,8 @@ const INSTRUCTORS = [
       "野菜ソムリエプロ・J-Veganist・発酵料理士インストラクター・発酵ごはんとお菓子のmadoi認定講師・SBS学苑講師",
     photo: "/assets/media/instructor_pic.JPG",
     bio:
-      "季節の食材と家庭の台所にフィットするレシピを提案。和のだしから発酵まで、日常に活きる技を大切にしています。",
-    tags: ["基本の和食", "発酵", "保存食"],
+      "季節の食材と家庭の台所にフィットするレシピを提案。植物由来の出汁から発酵まで、日常に活きる技を大切にしています。",
+    tags: ["旬の野菜", "発酵", "ヴィーガン料理"],
   },
 ];
 
@@ -61,8 +61,6 @@ function formatDate(iso: string) {
 }
 
 export default async function LessonPage() {
-  const ORDER_URL = "https://stores.jp/your-store/lessons";
-  const REQUEST_URL = "https://forms.gle/your-request-form";
   const heroImage = "/assets/media/lesson_4577.JPG";
 
   const lessons = await fetchLessons();
@@ -77,7 +75,7 @@ export default async function LessonPage() {
 
       <main className="lessonPage">
         <section id="concept" className="section">
-          <h1 className="pageTitle">ヴィーガンフードレッスン(毎月第日曜日＋不定)</h1>
+          <h1 className="pageTitle">ヴィーガンフードレッスン(毎月第２土曜日及び第３土曜日または日曜日＋不定)</h1>
           <p className="lead">
             野菜ソムリエプロ、J-Veganist、発酵料理士インストラクター、発酵ごはんとお菓子のmadoi認定講師のオーナーが、
             旬の野菜をテーマに発酵調味料を活かしたお料理のレッスンをします。
@@ -105,6 +103,19 @@ export default async function LessonPage() {
                 </div>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section id="terms" className="section">
+          <h2 className="secTitle">利用規約</h2>
+          <div className="agreementBlock">
+            <p>
+              各レッスンのご予約前に必ず
+              <a href="https://drive.google.com/file/d/1DXH5Oz8pFPyYdmKa9BFklwRabt5teNnB/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                利用規約
+              </a>
+              をお読みください。
+            </p>
           </div>
         </section>
 
@@ -142,24 +153,6 @@ export default async function LessonPage() {
           </div>
         </section>
 
-        <section id="order" className="section">
-          <div className="ctaCard">
-            <div className="ctaText">
-              <h2 className="secTitle">仮予約・決済</h2>
-              <p>外部サイト（STORES）にてお手続きください。空席状況は随時更新されます。</p>
-            </div>
-
-            <div className="ctaBtns">
-              <a className="btnPrimary" href={ORDER_URL} target="_blank" rel="noopener noreferrer">
-                申し込む
-              </a>
-              <a className="btnGhost" href="mailto:info@example.com">
-                メールで問い合わせ
-              </a>
-            </div>
-          </div>
-        </section>
-
         <section id="request" className="section">
           <div className="ctaCard">
             <div className="ctaText">
@@ -173,7 +166,7 @@ export default async function LessonPage() {
             <div className="ctaBtns">
               <a
                 className="btnPrimary"
-                href={REQUEST_URL}
+                href="/contact"
                 target="_blank"
                 rel="noopener noreferrer"
               >

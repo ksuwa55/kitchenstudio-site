@@ -1,12 +1,11 @@
-// app/access/page.tsx
 "use client";
-import "./access.css"; // ページ専用CSS
+import "./access.css";
 
 export default function AccessPage() {
   // 住所や表示名は好きに差し替えOK
   const PLACE_NAME = "Kitchen Studio";
-  const ADDRESS = "〒420-0841 静岡県静岡市葵区上足洗2-11-47";
-  const MAP_Q = encodeURIComponent(`${PLACE_NAME} ${ADDRESS}`);
+  const ADDRESS = "〒420-0841 静岡市葵区上足洗2丁目11 番35-8号";
+  const MAP_Q = encodeURIComponent(ADDRESS);
 
   return (
     <main className="accessPage">
@@ -58,16 +57,10 @@ export default function AccessPage() {
             <h2 className="secTitle">アクセス</h2>
             <ul className="list">
               <li>
-                東海道線「静岡駅」東口より徒歩20分
+                静鉄バス 上足洗北マックスバリュ上足洗店前下車 徒歩2分
               </li>
               <li>
-                静岡鉄道「新静岡駅」から徒歩20分
-              </li>
-              <li>
-                静鉄バス 上足洗下車 徒歩1分
-              </li>
-              <li>
-                静鉄バス 上足洗下車 徒歩1分
+                静鉄バス 銭座町、または三松下車 徒歩8分
               </li>
             </ul>
           </article>

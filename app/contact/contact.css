@@ -72,6 +72,7 @@
 }
 
 .contactPage input,
+.contactPage select,
 .contactPage textarea {
   width: 100%;
   border: 1px solid #e1e1e1;
@@ -84,6 +85,7 @@
 }
 
 .contactPage input:focus,
+.contactPage select:focus,
 .contactPage textarea:focus {
   border-color: #111;
   box-shadow: 0 0 0 3px rgba(17,17,17,.08);
@@ -132,11 +134,14 @@
 }
 
 /* レスポンシブ */
-@media (max-width: 760px) {
+@media (max-width: 768px) {
   .contactPage .grid {
     grid-template-columns: 1fr;
   }
-  .contactPage .pageTitle {
-    font-size: 30px;
-  }
+  .contactPage .pageTitle { font-size: 28px; }
+}
+
+@media (max-width: 640px) {
+  .contactPage .pageTitle { font-size: 24px; }
+  .contactPage textarea { min-height: 120px; }
 }

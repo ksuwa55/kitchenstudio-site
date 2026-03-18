@@ -7,6 +7,7 @@ type DeliMenuItem = {
   price: string;
   note: string;
   image?: { url: string; width: number; height: number };
+  book_url?: string;
 };
 
 async function fetchMenu(): Promise<DeliMenuItem[]> {
@@ -34,7 +35,6 @@ async function fetchMenu(): Promise<DeliMenuItem[]> {
 }
 
 export default async function DeliPage() {
-  const ORDER_URL = "https://stores.jp/your-store/deli";
   const heroImage = "/assets/media/deli1-3.jpg";
 
   const menuItems = await fetchMenu();
@@ -53,9 +53,9 @@ export default async function DeliPage() {
           <p className="lead">
             野菜ソムリエプロ、J-Veganist、発酵料理士インストラクター、発酵ごはんとお菓子のmadoi認定講師のオーナーが野菜と豆のおかずを発酵調味料を使って調理したお弁当を販売します。
             <br />
-            完全ヴィーガン（動物性のものをいっさい含まない）またはゆるヴィーガン（卵や調味料の一部に動物性のものを使用）
+            フルヴィーガン（動物性のものをいっさい含まない）またはゆるヴィーガン（卵や調味料の一部に動物性のものを使用）
             <br />
-            ほぼ週替わりで提供します。通常おかずの種類は５〜７品です。
+            不定期にメニューを変えて提供します。通常おかずの種類は５〜７品です。
           </p>
         </section>
 
@@ -72,6 +72,16 @@ export default async function DeliPage() {
                   <h3 className="title">{m.title}</h3>
                   <p className="desc">{m.desc}</p>
                   <div className="price">{m.price}</div>
+                  {m.book_url && (
+                    <a
+                      className="btnPrimary"
+                      href={m.book_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      予約する
+                    </a>
+                  )}
                 </div>
               </article>
             ))}
@@ -99,35 +109,15 @@ export default async function DeliPage() {
           </div>
         </section>
 
-        <section id="order" className="section">
-          {/* ここはあなたの既存のまま */}
-          <div className="ctaCard">
-            <div className="ctaText">
-              <h2 className="secTitle">注文・決済</h2>
-              <p>個数・受け取り日時をお選びのうえ、ご注文ください。外部サイトに遷移します。</p>
-            </div>
-            <div className="ctaBtns">
-              <a className="btnPrimary" href={ORDER_URL} target="_blank" rel="noopener noreferrer">
-                注文する
-              </a>
-              <a className="btnGhost" href="mailto:info@example.com">
-                メールで問い合わせ
-              </a>
-            </div>
-          </div>
-        </section>
-
         <section id="policy" className="section">
           <h2 className="secTitle">キャンセルポリシー</h2>
           <div className="policyCard">
             <ul>
-              <li>受け取り２日前正午まで：無料</li>
               <li>
-                予約＝決済となりますが３日前までにキャンセルのご連絡を受けた場合返金いたします。
-                <br />
-                決済方法により返金手数料をご負担いただく場合がございます。
+                予約日の3日前0:00まで（例：予約日が5日の場合は2日0:00まで）にキャンセルの旨を<a href="/contact">問い合わせフォーム</a>、または <strong>miyabisai.info@gmail.com</strong> へご連絡ください。
+                連絡の際はタイトルに「⚫︎月⚫︎日の本予約取り消し希望」と記入し、予約番号・お名前を忘れずにご記載ください。
               </li>
-              <li>２日前正午〜当日：商品代金の 100%</li>
+              <li>予約日3日前0:00以降のキャンセルは返金致しかねます。</li>
             </ul>
           </div>
         </section>

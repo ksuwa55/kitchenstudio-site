@@ -1,52 +1,23 @@
-"use client";
+import NewsSection from "./components/NewsSection";
 
-import { useEffect } from "react";
+type InstaNewsItem = {
+  id: string;
+  url: string;
+  description: string;
+};
 
-export default function Home() {
-  // TODO: replace with your real URLs
-  const STORES_BOOK_URL = "https://stores.jp/your-shop/booking";
-  const INSTAGRAM_URL = "https://www.instagram.com/miyabi_sai/";
+export default async function Home() {
 
-  // ここに「実際の投稿URL」を貼る（p/ または reel/ のURL）
-  const instagramPostUrls = [
-    "https://www.instagram.com/p/DSuRfy8GPrD/",
-    "https://www.instagram.com/p/DSzTEtZjL2O/",
-    "https://www.instagram.com/p/DSmohGPjE5Z/",
-  ];
-
-  // Instagramの埋め込みスクリプトを1回だけ読み込んで、描画後に処理を走らせる
-  useEffect(() => {
-    const w = window as typeof window & {
-      instgrm?: {
-        Embeds?: {
-          process?: () => void;
-        };
-      };
-    };
-    const processEmbeds = () => {
-      if (w?.instgrm?.Embeds?.process) {
-        w.instgrm.Embeds.process();
-      }
-    };
-
-    // すでにscriptがあるなら再処理だけ
-    const existing = document.querySelector('script[data-ig-embed="true"]');
-    if (existing) {
-      processEmbeds();
-      return;
-    }
-
-    const s = document.createElement("script");
-    s.async = true;
-    s.defer = true;
-    s.src = "https://www.instagram.com/embed.js";
-    s.setAttribute("data-ig-embed", "true");
-    s.onload = () => processEmbeds();
-    document.body.appendChild(s);
-
-    // 念のため
-    processEmbeds();
-  }, []);
+  let newsItems: InstaNewsItem[] = [];
+  try {
+    const res = await fetch("https://miyabisai.microcms.io/api/v1/instanews", {
+      headers: { "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY! },
+    });
+    const data = await res.json();
+    newsItems = data.contents ?? [];
+  } catch (e) {
+    console.error("Failed to fetch instanews:", e);
+  }
 
   return (
     <>
@@ -54,7 +25,7 @@ export default function Home() {
       <section className="hero heroGradient" aria-label="Hero">
         <div className="heroVideoWrap" aria-hidden>
           <video autoPlay muted loop playsInline poster="/assets/media/poster.jpg">
-            <source src="/assets/media/miyabisai.mp4" type="video/mp4" />
+            <source src="/assets/media/miyabisaiHP _movie.mp4" type="video/mp4" />
           </video>
         </div>
       </section>
@@ -80,22 +51,22 @@ export default function Home() {
           <h2 className="section-title">サービス</h2>
           <div className="service-grid">
             <div className="rental">
-              <img src="/assets/media/studio2.jpg" alt="レンタルスペース" />
+              <img src="/assets/media/main1.jpg" alt="レンタルスペース" />
               <p>
                 レンタルスペース
                 <br />
                 <small>「食」を中心に語らいの場を</small>
               </p>
-              <a href={STORES_BOOK_URL}>予約</a>
+              <a href="/rental">詳しくはこちら</a>
             </div>
             <div className="deli">
-              <img src="/assets/media/deli3−2.jpg" alt="デリ" />
+              <img src="/assets/media/deli_home.jpg" alt="デリ" />
               <p>
-                デリ
+                デリ（予約制）
                 <br />
                 <small>植物由来の発酵弁当</small>
               </p>
-              <a href={STORES_BOOK_URL}>予約</a>
+              <a href="/deli">詳しくはこちら</a>
             </div>
             <div className="lesson">
               <img src="/assets/media/lesson_4577.JPG" alt="レッスン" />
@@ -104,29 +75,15 @@ export default function Home() {
                 <br />
                 <small>旬の野菜と発酵を学べるヴィーガン料理</small>
               </p>
-              <a href={STORES_BOOK_URL}>予約</a>
+              <a href="/lesson">詳しくはこちら</a>
             </div>
           </div>
         </section>
 
-        {/* ここから News を「実際のインスタ投稿埋め込み」に変更 */}
         <section id="news" style={{ maxWidth: 1100, margin: "40px auto", padding: "0 20px" }}>
           <h2 className="section-title">News</h2>
-
-          <div className="igGrid">
-            {instagramPostUrls.map((url) => (
-              <div className="igCard" key={url}>
-                <blockquote
-                  className="instagram-media"
-                  data-instgrm-permalink={url}
-                  data-instgrm-version="14"
-                  style={{ background: "#fff", border: 0, margin: 0, padding: 0, width: "100%" }}
-                />
-              </div>
-            ))}
-          </div>
+          <NewsSection posts={newsItems} />
         </section>
-        {/* ここまで */}
       </main>
     </>
   );

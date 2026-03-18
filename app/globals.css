@@ -18,12 +18,35 @@ html, body {
 .header { position: relative; z-index: 10; }
 .header .navbar {
   position: absolute; top: 20px; right: 30px;
-  background: var(--nav-plate);
-  padding: 8px 14px; border-radius: 8px;
+  background: rgba(50,38,32,0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  padding: 5px 8px; border-radius: 40px;
 }
-.navlist { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; }
-.header .navlist a { color: #fff; text-decoration: none; font-weight: 600; white-space: nowrap; }
-.navlist a:hover { color: var(--nav-hover); text-decoration: underline; }
+.navlist { list-style: none; display: flex; gap: 0.15rem; margin: 0; padding: 0; }
+.header .navlist a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: block;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.header .navlist a:hover {
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  text-decoration: none;
+}
+.header .navlist a.active {
+  background: rgba(255,255,255,0.25);
+  font-weight: 700;
+}
 
 /* Mobile menu button */
 .menuBtn {
@@ -77,11 +100,14 @@ html, body {
   color: #000;
   font-weight: bold;
 }
-.section-title { 
+.section-title {
     font-size: 25px;
     font-weight: bold;
     border-bottom: 2px solid #000;
     display: inline-block
+}
+@media (max-width: 640px) {
+  .section-title { font-size: 20px; }
 }
 
 .service-grid {
@@ -120,6 +146,7 @@ html, body {
   width: 100%;
   flex: 1 1 auto;
   height: 100%;
+  min-height: 0;
   object-fit: cover;
   display: block;
   border-radius: 8px;
@@ -141,26 +168,25 @@ html, body {
   background: #fff;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
-.igCard h3 {
-  font-size: 20px;
-  margin: 0 0 16px;
+.igCardImage {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 8px;
+  display: block;
 }
-.igMeta {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.igMeta img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-.name {
-  font-weight: 600;
-}
-.desc {
-  color: #777;
+.igCardDesc {
+  margin: 0 0 14px;
+  padding: 10px 14px;
   font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  color: #584C44;
+  line-height: 1.8;
+  letter-spacing: 0.03em;
+  border-left: 3px solid #c9a87c;
+  background: #fffbf0;
+  border-radius: 0 6px 6px 0;
 }
 
 /* Pages other than home */
@@ -196,42 +222,13 @@ html, body {
 }
 
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
   .igGrid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (max-width: 600px) {
-  .igGrid {
-    grid-template-columns: 1fr;
-  }
-}
 
 @media (max-width: 768px) {
-  .service-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: auto;
-  }
-
-  .rental,
-  .deli,
-  .lesson {
-    grid-row: auto;
-    grid-column: auto;
-  }
-
-  .service-grid > div {
-    height: auto;
-  }
-
-  .service-grid img {
-    height: auto;
-    aspect-ratio: 4 / 3;
-  }
-}
-
-@media (max-width: 768px) {
-  /* サービスセクション：縦並び */
   .service-grid {
     grid-template-columns: 1fr;
     grid-auto-rows: auto;
@@ -254,11 +251,17 @@ html, body {
   }
 
   .heroVideoWrap video {
-    object-fit: contain; 
+    object-fit: contain;
     background-color: #000;
   }
 
   .hero {
     min-height: 60vh;
+  }
+}
+
+@media (max-width: 640px) {
+  .igGrid {
+    grid-template-columns: 1fr;
   }
 }

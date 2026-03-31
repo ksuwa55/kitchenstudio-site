@@ -5,8 +5,8 @@ import Footer from './components/Footer';
 
 
 export const metadata: Metadata = {
-  title: 'Kitchen Studio',
-  description: 'Kitchen Studio official site',
+  title: 'Kitchen Atelier',
+  description: 'Kitchen Atelier official site',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -24,7 +24,7 @@ export default function Header() {
                 <li><a href={STORES_BOOK_URL} target="_blank" rel="noopener noreferrer">問い合わせ</a></li>
             </ul>
         </nav>
-        &copy; {new Date().getFullYear()} Kitchen Studio
+        &copy; {new Date().getFullYear()} Kitchen Atelier
     </footer>
   );
 }

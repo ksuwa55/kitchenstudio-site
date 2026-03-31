@@ -3,7 +3,7 @@ import "./access.css";
 
 export default function AccessPage() {
   // 住所や表示名は好きに差し替えOK
-  const PLACE_NAME = "Kitchen Studio";
+  const PLACE_NAME = "Kitchen Atelier";
   const ADDRESS = "〒420-0841 静岡市葵区上足洗2丁目11 番35-8号";
   const MAP_Q = encodeURIComponent(ADDRESS);
 

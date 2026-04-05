@@ -158,8 +158,8 @@ export default async function LessonPage() {
             <div className="ctaText">
               <h2 className="secTitle">リクエスト（グループ向け）</h2>
               <p className="lead">
-                チームビルディングや親子向け、プライベートレッスンのご相談も承ります。
-                日時や人数、ご希望のテーマをお知らせください。
+                チームビルディングや親子向け、プライベートレッスンのご相談も承ります。 日時や人数、ご希望のテーマをお知らせください。
+                <br></br>また３人以上の場合、既存レッスンを別日に設定することも可能です。
               </p>
             </div>
 

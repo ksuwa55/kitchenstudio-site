@@ -57,12 +57,15 @@ function formatDate(iso: string) {
     month: "2-digit",
     day: "2-digit",
     weekday: "short",
+    timeZone: "Asia/Tokyo",
   });
-  const hasTime = d.getUTCHours() !== 0 || d.getUTCMinutes() !== 0;
+  const jstHour = (d.getUTCHours() + 9) % 24;
+  const hasTime = jstHour !== 0 || d.getUTCMinutes() !== 0;
   if (!hasTime) return dateStr;
   const timeStr = d.toLocaleTimeString("ja-JP", {
     hour: "2-digit",
     minute: "2-digit",
+    timeZone: "Asia/Tokyo",
   });
   return `${dateStr} ${timeStr}`;
 }

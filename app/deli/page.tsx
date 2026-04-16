@@ -1,5 +1,6 @@
-export const dynamic = 'force-dynamic';
+"use client";
 
+import { useEffect, useState } from "react";
 import "./deli.css";
 
 type DeliMenuItem = {
@@ -12,34 +13,17 @@ type DeliMenuItem = {
   book_url?: string;
 };
 
-async function fetchMenu(): Promise<DeliMenuItem[]> {
-  const SERVICE_DOMAIN = process.env.MICROCMS_SERVICE_DOMAIN;
-  const API_KEY = process.env.MICROCMS_API_KEY;
-
-  if (!SERVICE_DOMAIN || !API_KEY) {
-    throw new Error("MICROCMS env missing");
-  }
-
-  const url = `https://${SERVICE_DOMAIN}.microcms.io/api/v1/deli-menu?orders=order`;
-
-  const res = await fetch(url, {
-    headers: { "X-MICROCMS-API-KEY": API_KEY },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`microCMS not ok: ${res.status} ${text}`);
-  }
-
-  const data = await res.json();
-  return (data.contents ?? []) as DeliMenuItem[];
-}
-
-export default async function DeliPage() {
+export default function DeliPage() {
   const heroImage = "/assets/media/deli1-3.jpg";
+  const [menuItems, setMenuItems] = useState<DeliMenuItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const menuItems = await fetchMenu();
+  useEffect(() => {
+    fetch("/api/deli-menu")
+      .then((r) => r.json())
+      .then((data) => { setMenuItems(data); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
 
   return (
     <>
@@ -64,51 +48,57 @@ export default async function DeliPage() {
         <section id="menu" className="section">
           <h2 className="secTitle">メニュー</h2>
 
-          <div className="menuGrid">
-            {menuItems.map((m) => (
-              <article key={m.id} className="menuCard">
-                <div className="thumb">
-                  {m.image && <img src={m.image.url} alt={m.title} />}
-                </div>
-                <div className="body">
-                  <h3 className="title">{m.title}</h3>
-                  <p className="desc">{m.desc}</p>
-                  <div className="price">{m.price}</div>
-                  {m.book_url && (
-                    <a
-                      className="btnPrimary"
-                      href={m.book_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      予約する
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="priceList">
-            <table className="priceTable" aria-label="メニュー価格表">
-              <thead>
-                <tr>
-                  <th>メニュー</th>
-                  <th>価格</th>
-                  <th>説明</th>
-                </tr>
-              </thead>
-              <tbody>
-                {menuItems.map((row) => (
-                  <tr key={row.id}>
-                    <td>{row.title}</td>
-                    <td>{row.price}</td>
-                    <td>{row.note}</td>
-                  </tr>
+          {loading ? (
+            <p>読み込み中...</p>
+          ) : (
+            <>
+              <div className="menuGrid">
+                {menuItems.map((m) => (
+                  <article key={m.id} className="menuCard">
+                    <div className="thumb">
+                      {m.image && <img src={m.image.url} alt={m.title} />}
+                    </div>
+                    <div className="body">
+                      <h3 className="title">{m.title}</h3>
+                      <p className="desc">{m.desc}</p>
+                      <div className="price">{m.price}</div>
+                      {m.book_url && (
+                        <a
+                          className="btnPrimary"
+                          href={m.book_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          予約する
+                        </a>
+                      )}
+                    </div>
+                  </article>
                 ))}
-              </tbody>
-            </table>
-          </div>
+              </div>
+
+              <div className="priceList">
+                <table className="priceTable" aria-label="メニュー価格表">
+                  <thead>
+                    <tr>
+                      <th>メニュー</th>
+                      <th>価格</th>
+                      <th>説明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {menuItems.map((row) => (
+                      <tr key={row.id}>
+                        <td>{row.title}</td>
+                        <td>{row.price}</td>
+                        <td>{row.note}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
         </section>
 
         <section id="policy" className="section">

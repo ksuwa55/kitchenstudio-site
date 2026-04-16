@@ -1,11 +1,21 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Post = { id: string; url: string; description: string };
 
-export default function NewsSection({ posts }: { posts: Post[] }) {
+export default function NewsSection() {
+  const [posts, setPosts] = useState<Post[]>([]);
+
   useEffect(() => {
+    fetch("/api/instanews")
+      .then((r) => r.json())
+      .then((data) => setPosts(data))
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (posts.length === 0) return;
     const w = window as typeof window & {
       instgrm?: { Embeds?: { process?: () => void } };
     };
@@ -25,7 +35,7 @@ export default function NewsSection({ posts }: { posts: Post[] }) {
     s.onload = () => processEmbeds();
     document.body.appendChild(s);
     processEmbeds();
-  }, []);
+  }, [posts]);
 
   return (
     <div className="igGrid">

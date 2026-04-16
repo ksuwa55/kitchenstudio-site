@@ -1,5 +1,6 @@
-export const dynamic = 'force-dynamic';
+"use client";
 
+import { useEffect, useState } from "react";
 import "./lesson.css";
 
 type LessonItem = {
@@ -26,30 +27,6 @@ const INSTRUCTORS = [
   },
 ];
 
-async function fetchLessons(): Promise<LessonItem[]> {
-  const SERVICE_DOMAIN = process.env.MICROCMS_SERVICE_DOMAIN;
-  const API_KEY = process.env.MICROCMS_API_KEY;
-
-  if (!SERVICE_DOMAIN || !API_KEY) {
-    throw new Error("MICROCMS env missing");
-  }
-
-  const url = `https://${SERVICE_DOMAIN}.microcms.io/api/v1/lessons?orders=order`;
-
-  const res = await fetch(url, {
-    headers: { "X-MICROCMS-API-KEY": API_KEY },
-    cache: "no-store",
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`microCMS not ok: ${res.status} ${text}`);
-  }
-
-  const data = await res.json();
-  return (data.contents ?? []) as LessonItem[];
-}
-
 function formatDate(iso: string) {
   if (!iso) return "";
   const d = new Date(iso);
@@ -72,10 +49,17 @@ function formatDate(iso: string) {
   return `${dateStr} ${timeStr}`;
 }
 
-export default async function LessonPage() {
+export default function LessonPage() {
   const heroImage = "/assets/media/lesson_4577.JPG";
+  const [lessons, setLessons] = useState<LessonItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const lessons = await fetchLessons();
+  useEffect(() => {
+    fetch("/api/lessons")
+      .then((r) => r.json())
+      .then((data) => { setLessons(data); setLoading(false); })
+      .catch(() => setLoading(false));
+  }, []);
 
   return (
     <>
@@ -96,7 +80,6 @@ export default async function LessonPage() {
 
         <section id="instructors" className="section">
           <h2 className="secTitle">講師紹介</h2>
-
           <div className="instructorsGrid">
             {INSTRUCTORS.map((t) => (
               <article key={t.name} className="teacherCard">
@@ -133,9 +116,10 @@ export default async function LessonPage() {
 
         <section id="schedule" className="section">
           <h2 className="secTitle">開催予定</h2>
-
           <div className="lessonList">
-            {lessons.map((c) => (
+            {loading ? (
+              <p>読み込み中...</p>
+            ) : lessons.map((c) => (
               <article key={c.id} className="lessonCard">
                 <div className="lessonThumb">
                   {c.image && <img src={c.image.url} alt={c.title} />}
@@ -150,12 +134,7 @@ export default async function LessonPage() {
                   {c.desc && <p className="lessonDesc">{c.desc}</p>}
                   <div className="lessonFoot">
                     <div className="lessonPrice">{c.price}</div>
-                    <a
-                      className="btnPrimary"
-                      href={c.applyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
+                    <a className="btnPrimary" href={c.applyUrl} target="_blank" rel="noopener noreferrer">
                       申し込む
                     </a>
                   </div>
@@ -174,14 +153,8 @@ export default async function LessonPage() {
                 <br></br>また３人以上の場合、既存レッスンを別日に設定することも可能です。
               </p>
             </div>
-
             <div className="ctaBtns">
-              <a
-                className="btnPrimary"
-                href="/contact"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a className="btnPrimary" href="/contact" target="_blank" rel="noopener noreferrer">
                 リクエストフォームを開く
               </a>
             </div>

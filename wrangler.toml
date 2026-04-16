@@ -2,6 +2,3 @@ name = "kitchenstudio-site"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".open-next/assets"
-
-[assets]
-run_worker_first = true

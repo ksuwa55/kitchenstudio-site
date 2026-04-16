@@ -36,7 +36,7 @@ async function fetchLessons(): Promise<LessonItem[]> {
 
   const res = await fetch(url, {
     headers: { "X-MICROCMS-API-KEY": API_KEY },
-    cache: "force-cache", // ビルド時固定
+    cache: "no-store",
   });
 
   if (!res.ok) {

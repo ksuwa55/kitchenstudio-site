@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import "./deli.css";
 
 type DeliMenuItem = {

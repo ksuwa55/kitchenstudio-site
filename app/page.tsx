@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import NewsSection from "./components/NewsSection";
 
 type InstaNewsItem = {

@@ -1,24 +1,6 @@
 import NewsSection from "./components/NewsSection";
 
-type InstaNewsItem = {
-  id: string;
-  url: string;
-  description: string;
-};
-
-export default async function Home() {
-
-  let newsItems: InstaNewsItem[] = [];
-  try {
-    const res = await fetch("https://miyabisai.microcms.io/api/v1/instanews", {
-      headers: { "X-MICROCMS-API-KEY": process.env.MICROCMS_API_KEY! },
-    });
-    const data = await res.json();
-    newsItems = data.contents ?? [];
-  } catch (e) {
-    console.error("Failed to fetch instanews:", e);
-  }
-
+export default function Home() {
   return (
     <>
       {/* hero section */}
@@ -82,7 +64,7 @@ export default async function Home() {
 
         <section id="news" style={{ maxWidth: 1100, margin: "40px auto", padding: "0 20px" }}>
           <h2 className="section-title">News</h2>
-          <NewsSection posts={newsItems} />
+          <NewsSection />
         </section>
       </main>
     </>

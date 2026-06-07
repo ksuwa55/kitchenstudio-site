@@ -93,15 +93,12 @@ export default function ContactPage() {
         }),
       });
 
-      if (!res.ok) throw new Error(await res.text().catch(() => "Send error"));
+      if (!res.ok) throw new Error("failed");
 
       setStatus({ ok: true, msg: "送信しました。折り返しご連絡いたします。" });
       setForm({ name: "", email: "", subject: "", message: "", website: "" });
-    } catch (err) {
-      setStatus({
-        ok: false,
-        msg: "送信に失敗しました。時間をおいて再度お試しください。",
-      });
+    } catch {
+      setStatus({ ok: false, msg: "送信に失敗しました。時間をおいて再度お試しください。" });
     } finally {
       setSubmitting(false);
     }
@@ -240,7 +237,7 @@ export default function ContactPage() {
         </div>
 
         <p className="formNote">
-          ※ ドメインgmail.comからのメールを受信できるように設定をお願いいたします。
+          ※ 内容を確認後、担当者よりご返信いたします。
         </p>
       </section>
     </main>

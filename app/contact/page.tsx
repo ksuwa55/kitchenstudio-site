@@ -32,7 +32,7 @@ export default function ContactPage() {
     website: "", // honey pot
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitting] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<null | { ok: boolean; msg: string }>(
     null
   );
@@ -80,24 +80,35 @@ export default function ContactPage() {
       return;
     }
 
-    const body = [
-      `お名前: ${form.name}`,
-      `メールアドレス: ${form.email}`,
-      `お問い合わせの種類: ${form.subject}`,
-      ``,
-      `お問い合わせ内容:`,
-      form.message,
-    ].join("\n");
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+        }),
+      });
 
-    const mailto =
-      `mailto:suwabemasami0904@gmail.com` +
-      `?subject=${encodeURIComponent(`[お問い合わせ] ${form.subject}`)}` +
-      `&body=${encodeURIComponent(body)}`;
+      if (!res.ok) {
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error || `送信に失敗しました (${res.status})`);
+      }
 
-    window.location.href = mailto;
-
-    setStatus({ ok: true, msg: "メールアプリが開きます。そのまま送信してください。" });
-    setForm({ name: "", email: "", subject: "", message: "", website: "" });
+      setStatus({ ok: true, msg: "送信しました。担当者より折り返しご連絡いたします。" });
+      setForm({ name: "", email: "", subject: "", message: "", website: "" });
+    } catch (err) {
+      setStatus({
+        ok: false,
+        msg: "送信に失敗しました。時間をおいて再度お試しください。",
+      });
+      console.error(err);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (

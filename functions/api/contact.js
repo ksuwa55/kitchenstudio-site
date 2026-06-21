@@ -1,5 +1,3 @@
-import { EmailMessage } from "cloudflare:email";
-
 export async function onRequestPost({ request, env }) {
   try {
     const { name, email, subject, message } = await request.json();
@@ -11,26 +9,27 @@ export async function onRequestPost({ request, env }) {
       ``,
       `お問い合わせ内容:`,
       message,
-    ].join("\r\n");
+    ].join("\n");
 
-    const rawEmail = [
-      `From: "みやびさいキッチンスタジオ" <noreply@miyabisai.com>`,
-      `To: suwabemasami0904@gmail.com`,
-      `Reply-To: "${name}" <${email}>`,
-      `Subject: [お問い合わせ] ${subject}`,
-      `MIME-Version: 1.0`,
-      `Content-Type: text/plain; charset=utf-8`,
-      ``,
-      bodyText,
-    ].join("\r\n");
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: "みやびさいキッチンスタジオ <onboarding@resend.dev>",
+        to: "suwabemasami0904@gmail.com",
+        reply_to: email,
+        subject: `[お問い合わせ] ${subject}`,
+        text: bodyText,
+      }),
+    });
 
-    const msg = new EmailMessage(
-      "noreply@miyabisai.com",
-      "suwabemasami0904@gmail.com",
-      rawEmail
-    );
-
-    await env.SEND_EMAIL.send(msg);
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(err);
+    }
 
     return new Response(JSON.stringify({ ok: true }), {
       headers: { "Content-Type": "application/json" },

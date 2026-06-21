@@ -18,7 +18,7 @@ export async function onRequestPost({ request, env }) {
         Authorization: `Bearer ${env.RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: "みやびさいキッチンスタジオ <noreply@miyabisai.com>",
+        from: "コンタクトフォームから問い合わせ <noreply@miyabisai.com>",
         to: "suwabemasami0904@gmail.com",
         reply_to: email,
         subject: `[お問い合わせ] ${subject}`,
